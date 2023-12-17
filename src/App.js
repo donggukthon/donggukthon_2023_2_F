@@ -1,8 +1,15 @@
-function App() {
+import React from 'react'
+import { Global } from '@emotion/react'
+import { BrowserRouter } from 'react-router-dom'
+import PageRoute from './PageRoute'
+import { reset } from './styles/Reset'
+
+const App = () =>{
   return (
-    <div className="App">
-      
-    </div>
+    <BrowserRouter>
+      <Global styles={reset} />
+      <PageRoute/>
+    </BrowserRouter>
   );
 }
 
