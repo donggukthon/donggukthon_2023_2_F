@@ -10,7 +10,7 @@ import Layout from './components/Layout/Layout';
 const PageRoute = () =>{
   return (
     <Routes>
-      <Route path='/' element={<Layout />}>
+      <Route element={<Layout />}>
         <Route path='/post/photo' element={<AddPhoto />}></Route>
         <Route path='/post/text' element={<AddText />}></Route>
         <Route path='/post/location' element={<AddLocation />}></Route>
