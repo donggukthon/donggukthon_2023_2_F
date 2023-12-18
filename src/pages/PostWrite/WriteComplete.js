@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { common } from '../../styles/Common'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPostDate } from '../../redux/postSlice'
-import { Link } from 'react-router-dom'
+import { Link, useLocation  } from 'react-router-dom'
 import Close from '../../assets/icon/Close.png'
 import CopyURLSnowman from '../../assets/icon/CopyURLSnowman.png'
 import SaveSnowman from '../../assets/icon/SaveSnowman.png'
@@ -10,7 +10,9 @@ import ShareKakao from '../../assets/icon/ShareKakao.png'
 
 
 const AddText = () =>{
+  const baseUrl = `http://localhost:3000`
   const dispatch = useDispatch()
+  const currentLocation = useLocation()
   const imageSrc = useSelector((state) => state.post.imageSrc)
   const textContents = useSelector((state) => state.post.textContents)
   const postDate = useSelector((state) => state.post.postDate)
@@ -25,6 +27,15 @@ const AddText = () =>{
     dispatch(setPostDate(dateString))
     return postDate
   }
+
+  const handleCopyClipBoard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('링크가 복사되었습니다.');
+    } catch (error) {
+      alert('링크 복사에 실패하였습니다.');
+    }
+  };
   
   return (
     <PostBg>
@@ -44,7 +55,7 @@ const AddText = () =>{
       <div>
         <CompleteButtonWrap>
           <li>
-            <button>
+            <button onClick={() => handleCopyClipBoard(`${baseUrl}${currentLocation.pathname}`)}>
               <img src={CopyURLSnowman} alt='링크 복사' />
               <span>링크복사</span>
             </button>
