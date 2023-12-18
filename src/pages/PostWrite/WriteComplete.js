@@ -2,7 +2,12 @@ import styled from '@emotion/styled'
 import { common } from '../../styles/Common'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPostDate } from '../../redux/postSlice'
+import { Link } from 'react-router-dom'
+import Mainmaps from '../Viewmypage/Mainmaps'
 import Close from '../../assets/icon/Close.png'
+import CopyURLSnowman from '../../assets/icon/CopyURLSnowman.png'
+import SaveSnowman from '../../assets/icon/SaveSnowman.png'
+import ShareSnowman from '../../assets/icon/ShareSnowman.png'
 
 
 const AddText = () =>{
@@ -27,7 +32,9 @@ const AddText = () =>{
     <PostBg>
       <CompleteTitleWrap>
         <CompleteTitle>눈사람 등록 완료 </CompleteTitle>
-        <img src={Close} alt='close' />
+        <Link to={Mainmaps}>
+          <img src={Close} alt='close' />
+        </Link>
       </CompleteTitleWrap>
       <CompleteCardWrap>
         <CompleteImgWrap><img src={imageSrc} alt='새로 등록한 눈사람 이미지'/></CompleteImgWrap>
@@ -37,21 +44,26 @@ const AddText = () =>{
         </div>
       </CompleteCardWrap>
       <div>
-        <ul></ul>
-        <ul>
+        <CompleteButtonWrap>
           <li>
-            <button></button>
-            <span>링크복사</span>
-          </li>
-        </ul>
-          <li>
-            <button></button>
-            <span>다운로드</span>
+            <button>
+              <img src={CopyURLSnowman} alt='링크 복사' />
+              <span>링크복사</span>
+            </button>
           </li>
           <li>
-            <button></button>
-            <span>공유하기</span>
+            <button>
+              <img src={SaveSnowman} alt='링크 복사' />
+              <span>다운로드</span>
+            </button>
           </li>
+          <li>
+            <button>
+              <img src={ShareSnowman} alt='링크 복사' />
+              <span>공유하기</span>
+            </button>
+          </li>
+        </CompleteButtonWrap>
       </div>
     </PostBg>
   );
@@ -91,7 +103,7 @@ const CompleteCardWrap = styled.div`
   background:${common.colors.postWriteBoxBG};
   border-radius:10px;
   padding:${common.padding};
-  margin:28px auto 0;
+  margin:28px auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 `
 const CompleteImgWrap = styled.div`
@@ -103,11 +115,21 @@ const CompleteImgWrap = styled.div`
   justify-content: center;
   margin-bottom:15px;
 `
-
 const CompleteName = styled.h3`
   ${sharedFontStyle}
 `
 const CompleteBirth = styled.p`
   font-size:${common.fontSize.fz20};
+`
+
+const CompleteButtonWrap = styled.ul`
+  width:240px;
+  margin: 0 auto;
+  display:flex;
+  justify-content:space-between;
+  img{
+    display:block;
+    margin-bottom:8px;
+  }
 `
 export default AddText
