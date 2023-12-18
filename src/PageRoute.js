@@ -23,7 +23,6 @@ const PageRoute = () =>{
         
         <Route element={<Maplayout />}>
         <Route path='/' element={<Mainmaps />}></Route>
-
         </Route>
       <Route element={<Layout />}>
         <Route path='/post/photo' element={<AddPhoto />}></Route>

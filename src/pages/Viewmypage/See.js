@@ -5,7 +5,7 @@ import React from 'react';
 const See = () => {
 return (
     <div>
-    <h1>왜그래;</h1>
+    <h1>목록보기</h1>
     </div>
 );
 };
