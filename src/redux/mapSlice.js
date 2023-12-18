@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const mapSlice = createSlice({
   name: 'map',
   initialState: {
-    mapCenter:  { lat: 0, lng: 0 }
+    mapCenter: '',
   },
   reducers: {
     setMapCenter: (state, action) => {
