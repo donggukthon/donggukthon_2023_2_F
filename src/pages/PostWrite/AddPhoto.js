@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import TitleWrap from './TitleWrap'
 import PostBtn from '../../components/PostBtn'
+import Header from '../../components/Layout/Header'
 import { common } from '../../styles/Common'
 import { useDispatch, useSelector } from 'react-redux'
 import { setImageSrc } from '../../redux/postSlice'
@@ -19,26 +20,30 @@ const AddPhoto = () =>{
   }
 
   return (
-    <PostBg>
-      <TitleWrap title='눈사람보러오세요' subTitle='사진 등록'/>
-      <label htmlFor='snowmanUpload'>
-        <PhotoBox>
-          <PhotoBoxText>
-            <img src={PostAddImg} alt='plus' />
-            사진 등록하기
-            </PhotoBoxText>
-          <img src={imageSrc} alt='새로 등록한 눈사람 이미지'/>
-        </PhotoBox>
-      </label>
+    <>
+      <Header />
+      <PostBg>
+        <TitleWrap title='우리 눈사람은 이렇게 생겼어요!' subTitle='눈사람의 사진을 등록해주세요.'/>
+        <label htmlFor='snowmanUpload'>
+          <PhotoBox>
+            <PhotoBoxText>
+              <img src={PostAddImg} alt='plus' />
+              사진 등록하기
+              </PhotoBoxText>
+            <img src={imageSrc} alt='새로 등록한 눈사람 이미지'/>
+          </PhotoBox>
+        </label>
         <InputPostFile type='file' id='snowmanUpload' accept='image/*' onChange={handelFileUpload}/>
         <PostBtn value='다음' type='button' to='/post/text' />
     </PostBg>
+    </>
   );
 }
 
 const PostBg = styled.div`
   padding:0 24px;
   background:${common.colors.postBg};
+  height: 100vh;
 `
 
 const InputPostFile = styled.input`

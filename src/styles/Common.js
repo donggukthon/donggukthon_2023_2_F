@@ -2,7 +2,7 @@ export const common = {
   colors: {
     pointRed: '#D82847',
     postBg: '#F0F4F8',
-    postWriteBoxBG : '#D2DDE8',
+    postWriteBoxBG : '#DEE8F2',
     postWriteBoxTextColor: '#7188A1',
     postWriteTextColor: '#353535',
     white:'#fff',
