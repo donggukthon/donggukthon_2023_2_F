@@ -2,60 +2,50 @@ import { useEffect } from 'react'
 import styled from '@emotion/styled'
 import SnowmanMarker from '../../assets/map/SnowmanMarker.png'
 import { useDispatch } from 'react-redux'
-import { setMapCenter } from '../../redux/mapSlice'
+import { setMap } from '../../redux/mapSlice'
 
 const MapContainer = () => {
   const dispatch = useDispatch()
 
-  const { kakao } = window;
+  const { kakao } = window
 
   useEffect(() => {
-    const container = document.getElementById('KakaoMap');
+    const container = document.getElementById('KakaoMap')
     let options = {
       center: new kakao.maps.LatLng(37.624915253753194, 127.15122688059974),
       level: 5,
     };
     //map
-    const map = new kakao.maps.Map(container, options);
+    const map = new kakao.maps.Map(container, options)
 
     const dragendHandler = () => {
-      const latlng = map.getCenter();
+      const latlng = map.getCenter()
       let lat = latlng.getLat()
       let lng = latlng.getLng()   
       
-      const geocoder = new window.kakao.maps.services.Geocoder();
+      const geocoder = new window.kakao.maps.services.Geocoder()
       geocoder.coord2Address(lng, lat, (result, status) => {
         if (status === window.kakao.maps.services.Status.OK) {
-          const fullAddress = result[0].address.address_name;
-          dispatch(setMapCenter({
+          const fullAddress = result[0].address.address_name
+          dispatch(setMap({
+            lat:lat,
+            lng:lng,
             address: fullAddress,
           }))
         } else {
-          console.error('주소 변환 실패');
+          console.error('주소 변환 실패')
         }
       });
     };
 
      // 이벤트 리스너 등록
-     kakao.maps.event.addListener(map, 'dragend', dragendHandler);
+     kakao.maps.event.addListener(map, 'dragend', dragendHandler)
 
      // 컴포넌트 언마운트 시 이벤트 리스너 해제
      return () => {
-       kakao.maps.event.removeListener(map, 'dragend', dragendHandler);
+       kakao.maps.event.removeListener(map, 'dragend', dragendHandler)
      };
-    // createMap()
   }, []);
-
-  // const createMap = () => {
-  //   const container = document.getElementById('KakaoMap');
-  //   let options = {
-  //     center: new kakao.maps.LatLng(37.624915253753194, 127.15122688059974),
-  //     level: 5,
-  //   };
-  //   //map
-  //   const map = new kakao.maps.Map(container, options);
-  // };
-  
 
   return (
     <>

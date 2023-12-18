@@ -3,14 +3,18 @@ import { createSlice } from '@reduxjs/toolkit'
 export const mapSlice = createSlice({
   name: 'map',
   initialState: {
-    mapCenter: '',
+    lat: '',
+    lng: '',
+    address: '',
   },
   reducers: {
-    setMapCenter: (state, action) => {
-      state.mapCenter = action.payload;
+    setMap: (state, action) => {
+      state.lat = action.payload.lat;
+      state.lng = action.payload.lng;
+      state.address = action.payload.address;
     },
   },
 });
 
-export const { setMapCenter } = mapSlice.actions;
+export const { setMap } = mapSlice.actions;
 export default mapSlice.reducer;
