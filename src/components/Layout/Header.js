@@ -23,7 +23,7 @@ const Header = (props) =>{
       displayText = 'NoteRead 페이지에 대한 텍스트';
       break;
     default:
-      displayText = '기본 텍스트';
+      displayText = '';
   }
   
   return (

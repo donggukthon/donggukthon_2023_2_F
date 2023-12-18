@@ -13,18 +13,26 @@ import Store from "./pages/Viewmypage/Store"
 import Like from "./pages/Viewmypage/Like";
 import Commnet from "./pages/Viewmypage/Comment";
 import Mainpage from "./pages/Viewmypage/Mainpage";
+import Mainmaps from "./pages/Viewmypage/Mainmaps";
+import Maplayout from './components/Layout/Maplayout'
+
 
 const PageRoute = () =>{
   return (
     <Routes>
+        
+        <Route element={<Maplayout />}>
+        <Route path='/' element={<Mainmaps />}></Route>
+
+        </Route>
       <Route element={<Layout />}>
-        <Route path='/' element={<Mainpage />}></Route>
         <Route path='/post/photo' element={<AddPhoto />}></Route>
         <Route path='/post/text' element={<AddText />}></Route>
         <Route path='/post/location' element={<AddLocation />}></Route>
         <Route path='/post' element={<WriteComplete />}></Route>
         <Route path='/read' element={<PostRead />}></Route>
 
+        <Route path='/main' element={<Mainpage />}></Route>
         <Route path='/mypage' element={<Mypage />}></Route>
         <Route path='/see' element={<See  />}></Route>
         <Route path='/store' element={<Store  />} ></Route>
