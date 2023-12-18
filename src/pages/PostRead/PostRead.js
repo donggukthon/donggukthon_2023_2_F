@@ -1,9 +1,11 @@
 import styled from '@emotion/styled'
 import Divider from '../../components/Divider'
+import Header from '../../components/Layout/Header'
 
 const PostRead = () =>{
   return (
     <>
+    <Header />
       <InnerBox>
         <div>
           <SnowmanInfoBox>

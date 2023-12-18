@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import PostBtn from '../../components/PostBtn'
+import Header from '../../components/Layout/Header'
 import TitleWrap from './TitleWrap'
 import { common } from '../../styles/Common'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,18 +25,22 @@ const AddText = () =>{
   }
 
   return (
-    <PostBg>
-      <TitleWrap title='눈사람보러오세요' subTitle='글쓰기'/>
-      <InputPostTitle name='title' placeholder='제목' onChange={handleTitleUpdate} value={textContents.title} />
-      <InputPostContent name='contents' placeholder='내용' onChange={handleContentsUpdate} value={textContents.contents}/>    
-      <PostBtn value='다음' type='button' to='/post/location'/>
-    </PostBg>
+    <>
+      <Header />
+      <PostBg>
+        <TitleWrap title='우리 눈사람을 소개할게요!' subTitle='눈사람에 대해 작성해주세요.'/>
+        <InputPostTitle name='title' placeholder='제목' onChange={handleTitleUpdate} value={textContents.title} />
+        <InputPostContent name='contents' placeholder='내용' onChange={handleContentsUpdate} value={textContents.contents}/>    
+        <PostBtn value='다음' type='button' to='/post/location'/>
+      </PostBg>
+    </>
   );
 }
 
 const PostBg = styled.div`
   padding:0 24px;
   background:${common.colors.postBg};
+  height: 100vh;
 `
 
 const sharedInputStyles = `
