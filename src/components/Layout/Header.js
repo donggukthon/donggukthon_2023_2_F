@@ -1,35 +1,56 @@
 import styled from '@emotion/styled'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { common } from '../../styles/Common'
+import Preview from '../../assets/icon/Preview.png'
 
-const Header = (props) =>{
+const Header = () =>{
   const location = useLocation()
+  const navigate = useNavigate()
   const currentPath = location.pathname
-  let displayText = '';
+  let headerContents = '';
 
   switch (currentPath) {
     case '/post/photo':
-      displayText = 'post/photo 페이지에 대한 텍스트';
+      headerContents = 
+        <WriteProgressWrap>
+          <li className='active'></li>
+          <li></li>
+          <li></li>
+        </WriteProgressWrap>;
       break;
     case '/post/text':
-      displayText = 'post/text 페이지에 대한 텍스트';
+      headerContents = 
+        <WriteProgressWrap>
+          <li></li>
+          <li className='active'></li>
+          <li></li>
+        </WriteProgressWrap>;
       break;
     case '/post/location':
-      displayText = 'post/location 페이지에 대한 텍스트';
+      headerContents = 
+        <WriteProgressWrap>
+          <li></li>
+          <li></li>
+          <li className='active'></li>
+        </WriteProgressWrap>;
       break;
-    case '/post':
-      displayText = 'post 완료 페이지에 대한 텍스트';
-      break;
-    case '/post/':
-      displayText = 'NoteRead 페이지에 대한 텍스트';
+    case '/read':
+      headerContents = '눈사람 도감';
       break;
     default:
-      displayText = '';
+      headerContents = '';
   }
   
+  const BackLocation = () => {  
+    navigate(-1)
+  }
+
   return (
     <HeaderWarp>
-      {displayText}
+      <BackButton onClick={BackLocation}>
+        <img src={Preview} alt='뒤로가기' />
+      </BackButton>
+      {headerContents}
     </HeaderWarp>
   )
 }
@@ -43,6 +64,31 @@ const HeaderWarp = styled.header`
   top:0;
   width:100%;
   background:${common.colors.white};
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:${common.fontSize.fz16};
 `
-
+const BackButton = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 24px;
+  transform: translateY(-50%);
+`
+const WriteProgressWrap = styled.ul`
+  display:flex;
+  li{
+    width:70px;
+    height:15px;
+    background:${common.colors.whiteF3};
+    border-radius:35px;
+    margin-right:11px;
+    &:last-child{
+      margin-right:0;
+    }
+    &.active{
+      background:${common.colors.pointRed};
+    }
+  }
+`
 export default Header
