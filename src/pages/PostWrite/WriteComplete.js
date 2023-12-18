@@ -3,7 +3,6 @@ import { common } from '../../styles/Common'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPostDate } from '../../redux/postSlice'
 import { Link } from 'react-router-dom'
-import Mainmaps from '../Viewmypage/Mainmaps'
 import Close from '../../assets/icon/Close.png'
 import CopyURLSnowman from '../../assets/icon/CopyURLSnowman.png'
 import SaveSnowman from '../../assets/icon/SaveSnowman.png'
@@ -18,7 +17,6 @@ const AddText = () =>{
   
   const getTodayDate = () => {
     const today = new Date()
-    console.log(today)
     const year = today.getFullYear()
     const month = today.getMonth() + 1
     const date = today.getDate()
@@ -32,12 +30,12 @@ const AddText = () =>{
     <PostBg>
       <CompleteTitleWrap>
         <CompleteTitle>눈사람 등록 완료 </CompleteTitle>
-        <Link to={Mainmaps}>
+        <Link to='/'>
           <img src={Close} alt='close' />
         </Link>
       </CompleteTitleWrap>
       <CompleteCardWrap>
-        <CompleteImgWrap><img src={imageSrc} alt='새로 등록한 눈사람 이미지'/></CompleteImgWrap>
+        <CompleteImgWrap><img src={imageSrc} alt='새로 등록한 눈사람 이미지' /></CompleteImgWrap>
         <div>
           <CompleteName>{textContents?.title}</CompleteName>
           <CompleteBirth>{getTodayDate()}</CompleteBirth>
@@ -117,6 +115,7 @@ const CompleteImgWrap = styled.div`
 `
 const CompleteName = styled.h3`
   ${sharedFontStyle}
+  margin-bottom:7px;
 `
 const CompleteBirth = styled.p`
   font-size:${common.fontSize.fz20};

@@ -6,6 +6,7 @@ export const common = {
     postWriteBoxTextColor: '#7188A1',
     postWriteTextColor: '#353535',
     white:'#fff',
+    whiteF3:'#F3F3F3',
     black:'#000'
   },
   fontSize:{
