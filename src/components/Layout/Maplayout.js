@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Header from './Header';
 import { Outlet } from 'react-router-dom';
-import backgroundImage2 from '/Users/nam/Desktop/notmine/snowman1218/donggukthon_2023_2_F/src/rectangle_398.png'
+import backgroundImage2 from '../../assets/main/rectangle_398.png'
 
 const Maplayout = () => {
 return (

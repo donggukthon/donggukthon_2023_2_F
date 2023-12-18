@@ -20,10 +20,9 @@ import Maplayout from './components/Layout/Maplayout'
 const PageRoute = () =>{
   return (
     <Routes>
-        
-        <Route element={<Maplayout />}>
+      <Route element={<Maplayout />}>
         <Route path='/' element={<Mainmaps />}></Route>
-        </Route>
+      </Route>
       <Route element={<Layout />}>
         <Route path='/post/photo' element={<AddPhoto />}></Route>
         <Route path='/post/text' element={<AddText />}></Route>

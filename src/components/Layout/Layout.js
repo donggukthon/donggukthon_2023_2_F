@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Header from './Header';
 import { Outlet } from 'react-router-dom';
-import backgroundImage1 from '/Users/nam/Desktop/notmine/snowman1218/donggukthon_2023_2_F/src/backgroundimage.png'; // 이미지 파일의 경로를 지정해주세요.
+import backgroundImage1 from '../../assets/main/backgroundimage.png' // 이미지 파일의 경로를 지정해주세요.
 
 const Layout = () => {
   return (
@@ -25,10 +25,14 @@ const TotalWrap = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   height: 80vh; // 전체 화면 높이를 채우도록 설정
-
+  position:relative;
   display: flex;
   align-items: center;
   justify-content: center;
-`;
+  > div{
+    height:100%;
+  }
+`
+
 
 export default Layout;

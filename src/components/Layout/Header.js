@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { useLocation } from 'react-router-dom'
+import { common } from '../../styles/Common'
 
 const Header = (props) =>{
   const location = useLocation()
@@ -34,9 +35,14 @@ const Header = (props) =>{
 }
 
 const HeaderWarp = styled.header`
-  height: 30px;
+  height: 50px;
+  line-height: 50px;
   background:;
   text-align:center;
-  `
+  position:sticky;
+  top:0;
+  width:100%;
+  background:${common.colors.white};
+`
 
 export default Header

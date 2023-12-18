@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { common } from '../../styles/Common'
 
 const TitleWrap = ({ title, subTitle}) =>{
   return (
@@ -10,13 +11,19 @@ const TitleWrap = ({ title, subTitle}) =>{
 }
 
 const Title = styled.h2`
-  font-weight:800;
+  font-weight:${common.fontWeight.bold};
+  font-size:{${common.fontSize.fz24}};
+  color:${common.colors.postWriteTextColor};
+  padding-top:28px;
+  margin-bottom:6px;
+
 `
 
 const SubTitle = styled.h3`
-  font-weight:400;
-  font-size:12px;
-  color:#cecece;
+  font-weight:${common.fontWeight.light};
+  font-size:{${common.fontSize.fz16}};
+  color:${common.colors.postWriteTextColor};
+  margin-bottom:28px;
 `
 
 export default TitleWrap
