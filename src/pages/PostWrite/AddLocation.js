@@ -9,7 +9,7 @@ const AddText = () =>{
     <>
       <Header />
       <PostBg>
-      <TitleWrap title='우리 눈사람은 여기에 있어요!' subTitle='핀을 움직여 눈사람의 위치를 선택해주세요.'/>
+        <TitleWrap title='우리 눈사람은 여기에 있어요!' subTitle='핀을 움직여 눈사람의 위치를 선택해주세요.'/>
       {/* useNavigate */}
       <PostBtn value='등록하기' type='submit' to='/post'/>
     </PostBg>

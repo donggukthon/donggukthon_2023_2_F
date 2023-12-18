@@ -34,7 +34,7 @@ const Header = () =>{
           <li className='active'></li>
         </WriteProgressWrap>;
       break;
-    case '/read/':
+    case '/read':
       headerContents = '눈사람 도감';
       break;
     default:
@@ -67,6 +67,7 @@ const HeaderWarp = styled.header`
   display:flex;
   align-items:center;
   justify-content:center;
+  font-size:${common.fontSize.fz16};
 `
 const BackButton = styled.button`
   position: absolute;

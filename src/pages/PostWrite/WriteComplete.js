@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import Close from '../../assets/icon/Close.png'
 import CopyURLSnowman from '../../assets/icon/CopyURLSnowman.png'
 import SaveSnowman from '../../assets/icon/SaveSnowman.png'
-import ShareSnowman from '../../assets/icon/ShareSnowman.png'
+import ShareKakao from '../../assets/icon/ShareKakao.png'
 
 
 const AddText = () =>{
@@ -57,7 +57,7 @@ const AddText = () =>{
           </li>
           <li>
             <button>
-              <img src={ShareSnowman} alt='링크 복사' />
+              <img src={ShareKakao} alt='링크 복사' />
               <span>공유하기</span>
             </button>
           </li>
