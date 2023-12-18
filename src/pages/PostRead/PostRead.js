@@ -10,8 +10,6 @@ import ReadBookMark from '../../assets/icon/ReadBookMark.svg'
 import Send from '../../assets/icon/Send.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { setComment } from '../../redux/commentSlice'
-import { symbol } from 'prop-types'
-
 
 const PostRead = () =>{
   const dispatch = useDispatch()
