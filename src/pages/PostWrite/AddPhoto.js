@@ -6,11 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setImageSrc } from '../../redux/postSlice'
 import PostAddImg from '../../assets/icon/PostAddImg.png'
 
-
 const AddPhoto = () =>{
   const dispatch = useDispatch()
   const imageSrc = useSelector((state) => state.post.imageSrc)
-
   const handelFileUpload = (e) => {
     const file = e.target.files[0]
     const reader = new FileReader();
