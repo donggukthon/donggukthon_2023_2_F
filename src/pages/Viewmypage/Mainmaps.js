@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import kakaoMapImage from '/Users/nam/Desktop/notmine/snowman1218/donggukthon_2023_2_F/src/box.png'; // 이미지 경로 설정
 
 
-
-
-
 const Location=()=>{
     useEffect(()=>{
     var container = document.getElementById('map');
