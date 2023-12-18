@@ -25,7 +25,7 @@ const AddPhoto = () =>{
       <label htmlFor='snowmanUpload'>
         <PhotoBox>
           <PhotoBoxText>사진 등록하기</PhotoBoxText>
-          <PhotoBoxImg src={imageSrc} alt='프로필 이미지'/>
+          <PhotoBoxImg src={imageSrc} alt='새로 등록한 눈사람 이미지'/>
         </PhotoBox>
       </label>
         <InputPostFile type='file' id='snowmanUpload' accept='image/*' onChange={handelFileUpload}/>

@@ -35,8 +35,8 @@ const AddText = () =>{
 
 const sharedInputStyles = `
   width:100%;
-  background:${common.colors.postWriteBG};
-  color:${common.colors.postWriteColor};
+  background:${common.colors.postWriteBoxBG};
+  color:${common.colors.postWriteBoxTextColor};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 
