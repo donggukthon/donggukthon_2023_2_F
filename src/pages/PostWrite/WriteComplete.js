@@ -10,13 +10,19 @@ const AddText = () =>{
   const postDate = useSelector((state) => state.post.postDate)
   
   const getTodayDate = () => {
-    const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '.');
-    dispatch(setPostDate(today))
+    const today = new Date()
+    console.log(today)
+    const year = today.getFullYear()
+    const month = today.getMonth() + 1
+    const date = today.getDate()
+
+    const dateString = year + '.' +  month + '.' + date
+    dispatch(setPostDate(dateString))
     return postDate
   }
   
   return (
-    <>
+    <PostBg>
       <CompleteTitle>눈사람 등록 완료</CompleteTitle>
       <div>
         <img src={imageSrc} alt='새로 등록한 눈사람 이미지'/>
@@ -40,9 +46,14 @@ const AddText = () =>{
             <span>공유하기</span>
           </li>
       </div>
-    </>
+    </PostBg>
   );
 }
+
+const PostBg = styled.div`
+  padding:0 24px;
+  background:${common.colors.postBg};
+`
 
 const sharedFontStyle =`
   font-size:${common.fontSize.fz24};

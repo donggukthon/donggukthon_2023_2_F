@@ -12,12 +12,22 @@ const PostBtn= ({to, type, value, onClick}) =>{
 
 const StyledLink = styled(Link)`
   display:block;
+  position: fixed;
+  width: 100%;
+  right: 0;
+  padding: 0 ${common.padding};
+  bottom: 10%;
 `
 
 const Button = styled.button`
   color:${common.colors.white};
   background:${common.colors.pointRed};
+  font-weight:${common.fontWeight.bold};
+  font-size:{${common.fontSize.fz20}};
   width:100%;
-  `
+  height:50px;
+  line-height:50px;
+  border-radius:10px;
+`
 
 export default PostBtn

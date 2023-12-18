@@ -16,10 +16,15 @@ const Layout = () =>{
 }
 
 const TotalWrap = styled.div`
+  position:relative;
   max-width:768px;
   width:100%;
   margin:0 auto;
   border: 1px solid #000;
+  height:100vh;
+  > div{
+    height:100%;
+  }
 `
 
 
