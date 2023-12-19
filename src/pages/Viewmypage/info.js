@@ -2,7 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import backgroundImage from '../../assets/main/mainbackgroudimg.png';
 import backgroundImage1 from '../../assets/main/cutesnowman.png';
-import styled, { keyframes } from 'styled-components';
+import styled from '@emotion/styled'
+import {keyframes} from '@emotion/react'
 
 const Hello = () => {
 const navigate = useNavigate();
