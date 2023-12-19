@@ -19,7 +19,7 @@ export const postSlice = createSlice({
     },
     setPostDate:(state, action) =>{
       state.postDate = action.payload;
-    }
+    },
   },
 });
 
