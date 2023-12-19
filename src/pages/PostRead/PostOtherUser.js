@@ -3,13 +3,48 @@ import { common } from '../../styles/Common'
 import Header from '../../components/Layout/Header'
 import bg from '../../assets/bg/postBGGrey.png'
 import { css } from '@emotion/react'
+import ListItem from '../../components/List'
+import SampleSnowman1 from '../../assets/bg/SampleSnowman.png'
+import SampleSnowman2 from '../../assets/bg/SampleSnowman2.png'
+import SampleSnowman3 from '../../assets/bg/SampleSnowman3.png'
 
-const PostOtherUserView = () =>{
+
+const PostOtherUserView = ({ userId }) =>{
+  userId = 3
+
+  const arrs = [
+    {
+      name:'꽥꽥이',
+      date:'23년 12월 1일',
+      location:'중구 필동',
+      like:15,
+      imgSrc:SampleSnowman1
+    },{
+      name:'꿈돌이',
+      date:'23년 12월 12일',
+      location:'강남구 청담동',
+      like:7,
+      imgSrc:SampleSnowman2
+    },{
+      name:'산타',
+      date:'23년 12월 24일',
+      location:'중랑구 상봉동',
+      like:20,
+      imgSrc:SampleSnowman3
+    }
+  ]
+
   return (
     <>
-      <Header />
+      <Header/>
       <PostBg height100={true}>
-        
+        <ul>
+          {
+            arrs.map((arr, index) => (
+              <ListItem pageTypeNormal={true} pageTypeDetail='PostOtherUser' name={arr.name} date={arr.date} location={arr.location} like={arr.like} imgSrc={arr.imgSrc} key={index}/>
+            ))
+          }
+        </ul>
       </PostBg>
     </>
   );
@@ -28,6 +63,4 @@ const PostBg = styled.section`
       padding:0 20px 14px 20px;
     `}
 `
-const ColorGrey = styled.span`
-  color: ${common.colors.postReadGrey};
-`
+export default PostOtherUserView

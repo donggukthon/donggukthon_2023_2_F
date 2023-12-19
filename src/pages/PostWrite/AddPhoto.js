@@ -30,7 +30,7 @@ const AddPhoto = () =>{
             <PhotoBoxText>
               <img src={PostAddImg} alt='plus' />
               사진 등록하기
-              </PhotoBoxText>
+            </PhotoBoxText>
             <img src={imageSrc} alt='새로 등록한 눈사람 이미지'/>
           </PhotoBox>
         </label>
