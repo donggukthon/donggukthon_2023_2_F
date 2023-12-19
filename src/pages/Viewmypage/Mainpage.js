@@ -45,9 +45,9 @@ return (
 
 
 const PostBg = styled.div`
-padding: 0 24px;
+padding: 0 12px;
 background: url(${backgroundImage}) no-repeat center center fixed;
-background-size: 55% ;
+background-size: 100% ;
 background-position: center ;
 height: 100vh;
 display: flex;
