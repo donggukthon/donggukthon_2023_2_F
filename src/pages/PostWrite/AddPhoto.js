@@ -6,6 +6,7 @@ import { common } from '../../styles/Common'
 import { useDispatch, useSelector } from 'react-redux'
 import { setImageSrc } from '../../redux/postSlice'
 import PostAddImg from '../../assets/icon/PostAddImg.png'
+import bg from '../../assets/bg/postBGGrey.png'
 
 const AddPhoto = () =>{
   const dispatch = useDispatch()
@@ -42,7 +43,7 @@ const AddPhoto = () =>{
 
 const PostBg = styled.div`
   padding:0 24px;
-  background:${common.colors.postBg};
+  background:url(${bg}) no-repeat center/cover;
   height: 100vh;
 `
 

@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { common } from '../../styles/Common'
 import Preview from '../../assets/icon/Preview.png'
+import cloud from '../../assets/bg/Cloud.png'
 
 const Header = () =>{
   const location = useLocation()
@@ -51,6 +52,7 @@ const Header = () =>{
         <img src={Preview} alt='뒤로가기' />
       </BackButton>
       {headerContents}
+      <Cloud src={cloud} alt='구름 배경화면' />
     </HeaderWarp>
   )
 }
@@ -90,5 +92,13 @@ const WriteProgressWrap = styled.ul`
       background:${common.colors.pointRed};
     }
   }
+`
+
+const Cloud = styled.img`
+  position:absolute;
+  bottom:0;
+  bottom: -54%;
+  width: 100%;
+  z-index:-1;
 `
 export default Header

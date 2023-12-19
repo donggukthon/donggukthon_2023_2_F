@@ -24,15 +24,15 @@ export const getMap = (element) => {
 }
 
 export const mapSlice = createSlice({
-  name: 'map',
+  name: 'postMap',
   initialState: {
     data: { map: {}, places: {}, geocoder: {} },
-    currentPos: null
+    dragPosition: { lat: null, lng: null, address: null }
   },
   reducers: {
     setPostLocation: (state, action) => {
       state.data = action.payload;
-      state.currentPos = action.payload.currentPos;
+      state.dragPosition = action.payload;
     },
   },
 });

@@ -1,3 +1,5 @@
+import bg from '../assets/bg/postBGGrey.png'
+
 export const common = {
   colors: {
     white:'#fff',
@@ -9,6 +11,7 @@ export const common = {
     postWriteBoxTextColor: '#7188A1',
     postWriteTextColor: '#353535',
     postReadGrey: '#878B94',
+    postReadRed: '#861529',
     postReadInputColor: '#ABAEB3'
   },
   fontSize:{

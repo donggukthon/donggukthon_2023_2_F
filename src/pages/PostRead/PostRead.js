@@ -2,14 +2,17 @@ import styled from '@emotion/styled'
 import { common } from '../../styles/Common'
 import Divider from '../../components/Divider'
 import Header from '../../components/Layout/Header'
-import ImgSample from '../../assets/duck.jpg'
+import SampleSnowman from '../../assets/bg/SampleSnowman.png'
 import ReadComments from '../../assets/icon/ReadComments.svg'
 import ReadLike from '../../assets/icon/ReadLike.svg'
 import ReadShare from '../../assets/icon/ReadShare.svg'
 import ReadBookMark from '../../assets/icon/ReadBookMark.svg'
 import Send from '../../assets/icon/Send.png'
+import bg from '../../assets/bg/postBGGrey.png'
+import Stamp from '../../assets/icon/Stamp.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { setComment } from '../../redux/commentSlice'
+import { css } from '@emotion/react'
 
 const PostRead = () =>{
   const dispatch = useDispatch()
@@ -25,10 +28,10 @@ const PostRead = () =>{
   return (
     <>
       <Header />
-      <PostBg>
+      <PostBg height100={true}>
         <div>
           <SnowmanImgBox>
-            <img src={ImgSample} alt='눈사람 사진'/>
+            <img src={SampleSnowman} alt='눈사람 사진'/>
           </SnowmanImgBox>
           <SnowmanInfoBox>
             <div>
@@ -38,24 +41,24 @@ const PostRead = () =>{
               </SnowmanLocation>
             </div> 
             <Userinfo>
+              <img src={Stamp} alt='스탬프' />
               1234@user
             </Userinfo>
           </SnowmanInfoBox>
           <SnowmanTextBox>
-            본문입니다.<br />
-            본문입니다.<br />
-            본문입니다.<br />
+            오늘 눈사람 만들었어요!<br />
+            땡땡이를 소개합니다 ㅎㅎ<br />
           </SnowmanTextBox>
         </div>
         <ContentButtonBox>
           <div>
             <Button>
               <img src={ReadLike} alt='좋아요 개수' />
-              <span>10</span>
+              <ColorGrey>10</ColorGrey>
             </Button>
             <Button>
               <img src={ReadComments} alt='댓글 개수' />
-              <span>10</span>
+              <ColorGrey>10</ColorGrey>
             </Button>
           </div>
           <div>
@@ -68,23 +71,21 @@ const PostRead = () =>{
           </div>
         </ContentButtonBox>
         <Divider />
-      </PostBg>
-      <PostBg>
         <CommentsList>
           <div>
-            <p>유저 이름</p>
-            <p>댓글</p>
-            <p>날짜</p>
+            <CommentUserName>2645@user</CommentUserName>
+            <CommentBody>너무 귀여워요!</CommentBody>
+            <ColorGrey>2023.12.18</ColorGrey>
           </div>
           <div>
-            <p>유저 이름</p>
-            <p>댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글댓글</p>
-            <p>날짜</p>
+            <CommentUserName>9845@user</CommentUserName>
+            <CommentBody>만드는데 얼마나 걸리셨어요?</CommentBody>
+            <ColorGrey>2023.12.18</ColorGrey>
           </div>
         </CommentsList>
       </PostBg>
-      <Divider />
-      <PostBg>
+      <PostBg notBg={true} bottomFixed={true}>
+        <Line></Line>
         <CommentBox>
           <InputPostComment type='text' name='comment' placeholder='댓글을 입력해주세요' onChange={handleCommentUpdate} value={comment.value} />
           <div><img src={Send} alt='댓글 전송'/></div>
@@ -94,13 +95,23 @@ const PostRead = () =>{
   );
 }
 
-const PostReadGrey =`
+const PostBg = styled.section`
+  padding:48px ${common.padding} 0 ;
+  background: ${(props) => props.notBg ? `${common.colors.white}` : `url(${bg}) no-repeat center/cover`};
+  height: ${(props) => props.height100 ? `100vh` : ``};
+  ${(props) =>
+    props.bottomFixed &&
+    css`
+      position: fixed;
+      bottom: 0;
+      width:100%;
+      padding:0 20px 14px 20px;
+    `}
+`
+const ColorGrey = styled.span`
   color: ${common.colors.postReadGrey};
 `
 
-const PostBg = styled.section`
-  padding:0 ${common.padding};
-`
 const SnowmanImgBox = styled.div`
   overflow:hidden;
   border-radius:10px;
@@ -118,10 +129,15 @@ const SnowmanInfoBox = styled.div`
   }
 `
 const Userinfo = styled.div`
-  ${PostReadGrey}
+  color:${common.colors.postReadRed};
+  display:flex;
+  align-items:center;
+  img{
+    margin-right: 5px;
+  }
 `
 const SnowmanLocation = styled.div`
-  ${PostReadGrey}
+color: ${common.colors.postReadGrey};
   font-size:${common.fontSize.fz12};
 `
 const SnowmanTextBox = styled.div`
@@ -136,7 +152,6 @@ const ContentButtonBox = styled.div`
   }
 `
 const Button = styled.button`
-  ${PostReadGrey}
   display:flex;
   align-items:center;
   span{
@@ -147,13 +162,23 @@ const Button = styled.button`
   }
 `
 const CommentsList = styled.div`
+  display: flex;
+  flex-direction: column;
   div{
     display:inline-block;
     padding:16px 34px 16px 8px;
     margin-bottom:8px;
     background:${common.colors.postWriteBoxBG};
     border-radius:10px;
+    align-self: flex-start;
   }
+`
+
+const CommentUserName = styled.p`
+  color:${common.colors.postReadRed};
+`
+const CommentBody = styled.p`
+  margin:3px 0;
 `
 
 const CommentBox = styled.div`
@@ -170,4 +195,9 @@ const InputPostComment = styled.input`
   flex:1;
   margin-right:10px;
 `
+
+const Line = styled.hr`
+  margin: 0 0 10px 0;
+  border:1px solid #B9C3CC;
+  `
 export default PostRead

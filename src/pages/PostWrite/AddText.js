@@ -5,6 +5,7 @@ import TitleWrap from './TitleWrap'
 import { common } from '../../styles/Common'
 import { useDispatch, useSelector } from 'react-redux'
 import { setTextContents } from '../../redux/postSlice'
+import bg from '../../assets/bg/postBGGrey.png'
 
 const AddText = () =>{
   const dispatch = useDispatch()
@@ -39,7 +40,7 @@ const AddText = () =>{
 
 const PostBg = styled.div`
   padding:0 24px;
-  background:${common.colors.postBg};
+  background:url(${bg}) no-repeat center/cover;
   height: 100vh;
 `
 
