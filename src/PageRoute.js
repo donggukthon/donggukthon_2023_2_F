@@ -14,6 +14,7 @@ import Like from './pages/Viewmypage/Like'
 import Commnet from './pages/Viewmypage/Comment'
 import Mainpage from './pages/Viewmypage/Mainpage'
 import Mainmaps from './pages/Viewmypage/Mainmaps'
+import KakaoLoginPage from './pages/Login.js'
 
 
 const PageRoute = () =>{
@@ -27,6 +28,8 @@ const PageRoute = () =>{
       <Route path='/post' element={<WriteComplete />}></Route>
       <Route path='/read' element={<PostRead />}></Route>
       <Route path='/user/:id' element={<PostOtherUserView userId={id} />}></Route>
+      
+      <Route path='/login' element={<KakaoLoginPage />}></Route>
 
       <Route path='/main' element={<Mainpage />}></Route>
       <Route path='/mypage' element={<Mypage />}></Route>
