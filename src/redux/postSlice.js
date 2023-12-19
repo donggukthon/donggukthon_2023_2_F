@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
+import imgInit from '../assets/bg/imgInit.png'
 
 export const postSlice = createSlice({
   name: 'post',
   initialState: {
-    imageSrc: null,
+    imageSrc: imgInit,
     textContents: {
       title: '',
       contents: '',

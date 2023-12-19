@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
-import KakaoLoginImg from '../../assets/icon/KakaoLoginImg.png'
-import CloseRed from '../../assets/icon/CloseRed.png'
-import { common } from '../../styles/Common'
+import KakaoLoginImg from '../assets/icon/KakaoLoginImg.png'
+import CloseRed from '../assets/icon/CloseRed.png'
+import { common } from '../styles/Common'
 import { useNavigate } from 'react-router-dom'
 
 const REDIRECT_URI = 'http://34.22.106.126:8080/oauth2/authorization/kakao'

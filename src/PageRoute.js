@@ -14,8 +14,7 @@ import Like from './pages/Viewmypage/Like'
 import Commnet from './pages/Viewmypage/Comment'
 import Mainpage from './pages/Viewmypage/Mainpage'
 import Mainmaps from './pages/Viewmypage/Mainmaps'
-import LoginPage from './pages/Login/Login'
-import KakaoLogin from './pages/Login/KakaoLogin'
+import LoginPage from './pages/Login.js'
 // import AuthLayout from './components/Layout/AuthLayout'
 
 
@@ -40,8 +39,6 @@ const PageRoute = () =>{
       <Route path='/read' element={<PostRead />}></Route>
       <Route path='/user/:id' element={<PostOtherUserView userId={id} />}></Route>
       <Route path='/login' element={<LoginPage />}></Route>
-      <Route path='/oauth2/authorization/kakao' element={<KakaoLogin />}></Route>
-      {/* <Route path='/auth' element={<KakaoLogin />}></Route> */}
     </Routes>
   )
 }

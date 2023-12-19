@@ -60,7 +60,7 @@ const WriteComplete = () => {
     const kakao = window.Kakao;
     const JAVASCRIPT_API_KEY = 'ad72385a83fbad8abbd735a1f9473931'
     if( kakao.isInitialized() === false){
-      kakao.init(JAVASCRIPT_API_KEY)// 카카오에서 제공받은 javascript key를 넣어줌 
+      kakao.init(JAVASCRIPT_API_KEY) // 카카오에서 제공받은 javascript key를 넣어줌 
     }
     
     if (kakao) {
