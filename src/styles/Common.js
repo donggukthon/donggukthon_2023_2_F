@@ -11,7 +11,8 @@ export const common = {
     postReadGrey: '#878B94',
     postReadRed: '#861529',
     postReadInputColor: '#ABAEB3',
-    otherUserList: '#F3F9FE'
+    otherUserList: '#F3F9FE',
+    beige:'#FFF4E8'
   },
   fontSize:{
     fz12:'12px',

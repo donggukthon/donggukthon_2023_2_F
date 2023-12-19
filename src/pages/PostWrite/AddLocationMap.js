@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import SnowmanMarker from '../../assets/map/SnowmanMarker.png'
 import CurrentLocationLoad from '../../assets/map/CurrentLocationLoad.png'
 import { useDispatch, useSelector} from 'react-redux'
-import { setPostLocation, getMap } from '../../redux/mapSlice'
+import { setPostLocation } from '../../redux/mapSlice'
 
 const MapContainer = () => {
   const dispatch = useDispatch()
@@ -11,7 +11,24 @@ const MapContainer = () => {
   const map = useSelector((state) => state.postMap.data.map)
 
   useEffect(() => {
-    dispatch(getMap(mapElementRef.current))
+  if (window.navigator) {
+    // 최초 위치
+    const location = new window.kakao.maps.LatLng(
+      37.56682420267543,
+      126.978652258823
+    );
+
+    const options = {
+      center: location,
+      level: 3,
+    };
+
+    const map = new window.kakao.maps.Map(mapElementRef.current, options);
+    const places = new window.kakao.maps.services.Places(map);
+    const geocoder = new window.kakao.maps.services.Geocoder();
+
+    dispatch(setPostLocation({ map, places, geocoder }));
+  } 
   }, [dispatch])
 
   const dragendHandler = useCallback(() => {
