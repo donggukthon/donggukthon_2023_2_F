@@ -38,6 +38,9 @@ const Header = () =>{
     case '/read':
       headerContents = '눈사람 도감';
       break;
+    case '/user/2' :
+      headerContents = 'user@1234의 눈사람';
+      break;
     default:
       headerContents = '';
   }
@@ -58,6 +61,7 @@ const Header = () =>{
 }
 
 const HeaderWarp = styled.header`
+  z-index:1;
   height: 50px;
   line-height: 50px;
   background:;
@@ -93,7 +97,6 @@ const WriteProgressWrap = styled.ul`
     }
   }
 `
-
 const Cloud = styled.img`
   position:absolute;
   bottom:0;

@@ -30,6 +30,7 @@ const MapContainer = () => {
 
   useEffect( () => {
     if (map) {
+      window.kakao.maps.event.addListener(map, 'dragstart', dragendHandler);
       window.kakao.maps.event.removeListener(map, 'dragend', dragendHandler);
     }
   }, [map, dragendHandler])

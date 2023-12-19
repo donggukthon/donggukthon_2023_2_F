@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { common } from '../styles/Common'
+import ButtonBG from '../assets/bg/ButtonBG.png'
 
 const PostBtn= ({to, type, value, onClick}) =>{
   return (
     <StyledLink to={to}>
-      <Button type={type} onClick={onClick}>{value}</Button>
+      <Button type={type} onClick={onClick}>
+        {value}
+        <img src={ButtonBG} alt={value}/>
+      </Button>
     </StyledLink>
   )
 }
@@ -21,13 +25,20 @@ const StyledLink = styled(Link)`
 
 const Button = styled.button`
   color:${common.colors.white};
-  background:${common.colors.pointRed};
+  background:url() ;
   font-weight:${common.fontWeight.bold};
   font-size:{${common.fontSize.fz20}};
   width:100%;
-  height:50px;
   line-height:50px;
   border-radius:10px;
+  position:relative;
+  img{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    z-index:-1;
+  }
 `
 
 export default PostBtn

@@ -3,8 +3,6 @@ import { common } from '../../styles/Common'
 import Divider from '../../components/Divider'
 import Header from '../../components/Layout/Header'
 import SampleSnowman from '../../assets/bg/SampleSnowman.png'
-import ReadComments from '../../assets/icon/ReadComments.svg'
-import ReadLike from '../../assets/icon/ReadLike.svg'
 import ReadShare from '../../assets/icon/ReadShare.svg'
 import ReadBookMark from '../../assets/icon/ReadBookMark.svg'
 import Send from '../../assets/icon/Send.png'
@@ -13,6 +11,9 @@ import Stamp from '../../assets/icon/Stamp.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { setComment } from '../../redux/commentSlice'
 import { css } from '@emotion/react'
+import LikeCount from '../../components/LikeCount'
+import CommentCount from '../../components/CommentCount'
+
 
 const PostRead = () =>{
   const dispatch = useDispatch()
@@ -52,14 +53,8 @@ const PostRead = () =>{
         </div>
         <ContentButtonBox>
           <div>
-            <Button>
-              <img src={ReadLike} alt='좋아요 개수' />
-              <ColorGrey>10</ColorGrey>
-            </Button>
-            <Button>
-              <img src={ReadComments} alt='댓글 개수' />
-              <ColorGrey>10</ColorGrey>
-            </Button>
+            <LikeCount count={10} isLiked={true}/>
+            <CommentCount count={10} />
           </div>
           <div>
             <Button>
