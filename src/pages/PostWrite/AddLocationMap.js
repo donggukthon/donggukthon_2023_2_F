@@ -1,57 +1,24 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import styled from '@emotion/styled'
 import SnowmanMarker from '../../assets/map/SnowmanMarker.png'
+import CurrentLocationLoad from '../../assets/map/CurrentLocationLoad.png'
 import { useDispatch } from 'react-redux'
-import { setMap } from '../../redux/mapSlice'
+import { getMap } from '../../redux/mapSlice'
 
 const MapContainer = () => {
   const dispatch = useDispatch()
-
-  const { kakao } = window
+  const mapElementRef = useRef(null);
 
   useEffect(() => {
-    const container = document.getElementById('KakaoMap')
-    let options = {
-      center: new kakao.maps.LatLng(37.624915253753194, 127.15122688059974),
-      level: 5,
-    };
-    //map
-    const map = new kakao.maps.Map(container, options)
-
-    const dragendHandler = () => {
-      const latlng = map.getCenter()
-      let lat = latlng.getLat()
-      let lng = latlng.getLng()   
-      
-      const geocoder = new window.kakao.maps.services.Geocoder()
-      geocoder.coord2Address(lng, lat, (result, status) => {
-        if (status === window.kakao.maps.services.Status.OK) {
-          const fullAddress = result[0].address.address_name
-          dispatch(setMap({
-            lat:lat,
-            lng:lng,
-            address: fullAddress,
-          }))
-        } else {
-          console.error('주소 변환 실패')
-        }
-      });
-    };
-
-     // 이벤트 리스너 등록
-     kakao.maps.event.addListener(map, 'dragend', dragendHandler)
-
-     // 컴포넌트 언마운트 시 이벤트 리스너 해제
-     return () => {
-       kakao.maps.event.removeListener(map, 'dragend', dragendHandler)
-     };
-  }, []);
-
+    dispatch(getMap(mapElementRef.current))
+  }, [dispatch]);
+  
   return (
     <>
       <MapContainerWrap>
-        <Map id='KakaoMap'></Map>
-        <SnowmanMarkerImg src={SnowmanMarker} alt='지도 마커' />
+        <Map id='KakaoMap' ref={mapElementRef}></Map>
+        <SnowmanMarkerImg src={SnowmanMarker} alt='눈사람 지도 마커 이미지' />
+        <CurrentLocationBtn src={CurrentLocationLoad} alt='현재 위치 불러오기'/>
       </MapContainerWrap>
     </>
   )
@@ -77,4 +44,12 @@ const SnowmanMarkerImg = styled.img`
   filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.25));
   width: 50px;
 `
+
+const CurrentLocationBtn = styled.img`
+  position:absolute;
+  z-index:1;
+  bottom: 0;
+  right: 0;
+`
+
 export default MapContainer
