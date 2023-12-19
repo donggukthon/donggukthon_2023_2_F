@@ -1,73 +1,156 @@
-/*global kakao*/ 
+/*global kakao*/
+import Header from '../../components/Layout/Header'
+import { common } from '../../styles/Common';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import kakaoMapImage from '/Users/nam/Desktop/notmine/snowman1218/donggukthon_2023_2_F/src/box.png'; // 이미지 경로 설정
-var positions = [
-    {
-        title: '카카오', 
-        latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-    },
-    {
-        title: '생태연못', 
-        latlng: new kakao.maps.LatLng(33.450936, 126.569477)
-    },
-    {
-        title: '텃밭', 
-        latlng: new kakao.maps.LatLng(33.450879, 126.569940)
-    },
-    {
-        title: '근린공원',
-        latlng: new kakao.maps.LatLng(33.451393, 126.570738)
-    }
-];
-const Location = () => {
-    useEffect(() => {
-        var container = document.getElementById('map');
-        var options = {
-            center: new kakao.maps.LatLng(33.450705, 126.570677),
-            level: 10
-        };
-        var map = new kakao.maps.Map(container, options);
+import { useState } from 'react';
+import box from '../../assets/main/box.png';
+import backgroundImage from '../../assets/main/mainbackgroudimg.png';
+import backgroundImage1 from '../../assets/main/Group_713.png';
+import { styled, keyframes } from 'styled-components';
 
-        // 마커 이미지의 이미지 주소입니다
-        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+const Mainmaps = () => {
+	const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
+	const openBottomSheet = () => {
+		setBottomSheetOpen(true);
+	};
+	
+	const closeBottomSheet = () => {
+		setBottomSheetOpen(false);
+	};
+	useEffect(() => {
+		var container = document.getElementById('map');
+		var options = {
+		center: new kakao.maps.LatLng(33.450705, 126.570677),
+		level: 3,
+		};
+		var map = new kakao.maps.Map(container, options);
+	
+		// 마커 이미지의 이미지 주소
+	
+		var imageSrc = '/src/assets/main/snowpin.png', // 마커이미지의 주소입니다    
+		imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+		imageOption = {offset: new kakao.maps.Point(27, 69)};
+	
+		var positions = [
+		{
+			title: '카카오',
+			latlng: new kakao.maps.LatLng(33.450705, 126.570677),
+		},
+		];
+	
+		positions.forEach((position) => {
+		// 마커 이미지 생성
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+		// 마커 생성
+		var marker = new kakao.maps.Marker({
+			map: map,
+			position: position.latlng,
+			title: position.title,
+			image: markerImage,
+		});
+	
+		// 마커에 클릭 이벤트 추가
+		kakao.maps.event.addListener(marker, 'click', function () {
+			alert(position.title);
+		});
+		});
+	}, []);
 
-        for (var i = 0; i < positions.length; i++) {
-            // 마커 이미지의 이미지 크기입니다
-            var imageSize = new kakao.maps.Size(30, 30);
+return (
+    <>
+    <Header/>
+	<PostBg>
+	<PostBg1>
+		<MapContainer>
+		<div id="map" style={{ width: '300px', height: '500px' }}></div>
+		</MapContainer>
 
-            // 마커 이미지를 생성합니다
-            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+		<ContentContainer>
+		<Link to="/main">
+			<button style={{ marginBottom: '10px', color: 'red', fontWeight: 'bold' }}>
+			내 정보 보기
+			</button>
+		</Link>
+		<div>
+		<button onClick={openBottomSheet}>바텀 시트 열기</button>
+		</div>
+		<BoxImageContainer>
+			<BoxImage src={box} alt="box" />
+			<WhiteText>내 눈사람 등록하기</WhiteText>
+		</BoxImageContainer>
+		</ContentContainer>
+	</PostBg1>
+	</PostBg>
+    </>
+);
+};
 
-            // 마커를 생성합니다
-            var marker = new kakao.maps.Marker({
-                map: map,
-                position: positions[i].latlng,
-                title: positions[i].title,
-                image: markerImage
-            });
-
-            // 마커에 클릭 이벤트를 등록합니다
-            kakao.maps.event.addListener(marker, 'click', function () {
-                alert('마커 클릭됨');
-            });
-        }
-    }, [])
-
-    return (
-        <div>
-            <div id="map" style={{ width: "405px", height: "400px" }}></div>
-            
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                <Link to='/main'>
-                    <button style={{ marginBottom: '50px', color: 'red', fontWeight: 'bold' }}>
-                        내 정보 보기
-                    </button>
-                </Link>
-                <img src={kakaoMapImage} style={{ width: '150px', height: '50px' }} />
-            </div>
-        </div>
-    );
+const snowfallAnimation = keyframes`
+0% {
+background-position: center bottom;
 }
+100% {
+background-position: center top;
+}
+`;
 
-export default Location;
+const PostBg = styled.div`
+padding: 0 24px;
+background: url(${backgroundImage}) no-repeat center center fixed;
+background-size: 55%;
+background-position: center;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+animation: ${snowfallAnimation} 10s linear infinite;
+`;
+
+const PostBg1 = styled.div`
+padding: 0 80px;
+background: url(${backgroundImage1}) no-repeat center center fixed;
+background-size: 50%;
+height: 200vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+position: relative;
+`;
+
+const MapContainer = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+height: 617px;
+width: 500px;
+`;
+
+const ContentContainer = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+position: relative;
+`;
+
+const BoxImageContainer = styled.div`
+position: relative;
+`;
+
+const BoxImage = styled.img`
+width: 140px;
+height: 50px;
+`;
+
+const WhiteText = styled.div`
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+color: white;
+font-size: 16px;
+`;
+
+export default Mainmaps;

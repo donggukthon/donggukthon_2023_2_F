@@ -15,6 +15,8 @@ import Commnet from './pages/Viewmypage/Comment'
 import Mainpage from './pages/Viewmypage/Mainpage'
 import Mainmaps from './pages/Viewmypage/Mainmaps'
 import KakaoLoginPage from './pages/Login.js'
+import Info from "./pages/Viewmypage/info";
+
 
 
 const PageRoute = () =>{
@@ -31,6 +33,7 @@ const PageRoute = () =>{
       
       <Route path='/login' element={<KakaoLoginPage />}></Route>
 
+      <Route path='/info' element={<Info />}></Route>
       <Route path='/main' element={<Mainpage />}></Route>
       <Route path='/mypage' element={<Mypage />}></Route>
       <Route path='/see' element={<See  />}></Route>
