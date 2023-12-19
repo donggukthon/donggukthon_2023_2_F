@@ -25,6 +25,16 @@ return (
 				<p>저장한 게시글 보기</p>
 		</Link>
 
+    {/* 이미지와 텍스트를 감싸는 div */}
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        
+        <img
+        src={snowman} // 이미지 파일의 경로를 지정해주세요.
+        style={{ width: '200%', maxWidth: '400px', margin: '5px' }}
+        />
+    </div>
+    </div>
+);
 		{/* 이미지와 텍스트를 감싸는 div */}
 		<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 				<img
