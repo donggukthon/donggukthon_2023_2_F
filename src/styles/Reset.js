@@ -1,6 +1,20 @@
 import { css } from '@emotion/react'
 
 export const reset = css`
+  @font-face {
+    font-family: 'MaplestoryOTFLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'MaplestoryOTFBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   body {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -15,6 +29,8 @@ export const reset = css`
   button,
   code {
     font-size: 14px;
+    font-weight:300;
+    font-family: 'MaplestoryOTFLight', 'MaplestoryOTFBold', 'Noto Sans KR', sans-serif;
   }
 
   *,

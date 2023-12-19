@@ -17,8 +17,11 @@ export const postSlice = createSlice({
       state.textContents.title = action.payload.title;
       state.textContents.contents = action.payload.contents;
     },
+    setPostDate:(state, action) =>{
+      state.postDate = action.payload;
+    }
   },
 });
 
-export const { setImageSrc, setTextContents } = postSlice.actions;
+export const { setImageSrc, setTextContents, setPostDate } = postSlice.actions;
 export default postSlice.reducer;

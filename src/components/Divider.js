@@ -9,6 +9,7 @@ const Divider = () =>{
 const Line = styled.hr`
   margin: 10px 0;
   border:1px solid #B9C3CC;
+  
   `
 
 export default Divider
