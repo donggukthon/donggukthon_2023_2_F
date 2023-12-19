@@ -4,6 +4,7 @@ import PostBtn from '../../components/PostBtn'
 import TitleWrap from './TitleWrap'
 import Header from '../../components/Layout/Header'
 import MapContainer from './AddLocationMap'
+import bg from '../../assets/bg/postBGGrey.png'
 
 const AddText = () =>{
   return (
@@ -19,7 +20,7 @@ const AddText = () =>{
 }
 const PostBg = styled.div`
   padding:0 ${common.padding};
-  background:${common.colors.postBg};
+  background:url(${bg}) no-repeat center/cover;
   height: 100vh;
 `
 export default AddText

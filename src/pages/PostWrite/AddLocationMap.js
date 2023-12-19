@@ -1,24 +1,68 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import styled from '@emotion/styled'
 import SnowmanMarker from '../../assets/map/SnowmanMarker.png'
 import CurrentLocationLoad from '../../assets/map/CurrentLocationLoad.png'
-import { useDispatch } from 'react-redux'
-import { getMap } from '../../redux/mapSlice'
+import { useDispatch, useSelector} from 'react-redux'
+import { setPostLocation, getMap } from '../../redux/mapSlice'
 
 const MapContainer = () => {
   const dispatch = useDispatch()
   const mapElementRef = useRef(null);
+  const map = useSelector((state) => state.postMap.data.map)
 
   useEffect(() => {
     dispatch(getMap(mapElementRef.current))
-  }, [dispatch]);
+  }, [dispatch])
+
+  const dragendHandler = useCallback(() => {
+    const latlng = map.getCenter();
+    let lat = latlng.getLat()
+    let lng = latlng.getLng()   
+
+    const geocoder = new window.kakao.maps.services.Geocoder()
+    geocoder.coord2Address(lng, lat, (result, status) => {
+      if (status === window.kakao.maps.services.Status.OK) {
+        const fullAddress = result[0].address.address_name
+        dispatch(setPostLocation({lat: lat, lng: lng, address: fullAddress}))
+      }
+    })
+  }, [map, dispatch])
+
+  useEffect( () => {
+    if (map) {
+      window.kakao.maps.event.removeListener(map, 'dragend', dragendHandler);
+    }
+  }, [map, dragendHandler])
+
+  const handleCurrentPosition = () => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const locPosition = new window.kakao.maps.LatLng(lat, lng)
   
+        // 맵 이동
+        map.setCenter(locPosition);
+  
+        // 주소 가져오기
+        const geocoder = new window.kakao.maps.services.Geocoder()
+        geocoder.coord2Address(lng, lat, (result, status) => {
+          if (status === window.kakao.maps.services.Status.OK) {
+            const fullAddress = result[0].address.address_name
+            // 주소 및 위치 정보 저장
+            dispatch(setPostLocation({lat: lat, lng: lng, address: fullAddress}))
+          }
+        });
+      }
+    )
+  }
+
   return (
     <>
       <MapContainerWrap>
         <Map id='KakaoMap' ref={mapElementRef}></Map>
         <SnowmanMarkerImg src={SnowmanMarker} alt='눈사람 지도 마커 이미지' />
-        <CurrentLocationBtn src={CurrentLocationLoad} alt='현재 위치 불러오기'/>
+        <CurrentLocationBtn src={CurrentLocationLoad} alt='현재 위치 불러오기' onClick={()=> handleCurrentPosition()}/>
       </MapContainerWrap>
     </>
   )

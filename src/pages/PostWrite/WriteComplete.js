@@ -10,7 +10,7 @@ import ShareKakao from '../../assets/icon/ShareKakao.png'
 import { useRef } from 'react'
 import html2canvas from 'html2canvas'
 import { saveAs } from 'file-saver'
-
+import bg from '../../assets/bg/postBGGrey.png'
 
 const WriteComplete = () => {
   const saveSnowmanRef = useRef(null)
@@ -99,7 +99,7 @@ const WriteComplete = () => {
 
 const PostBg = styled.div`
   padding:0 24px;
-  background:${common.colors.postBg};
+  background:url(${bg}) no-repeat center/cover;
   height: 100vh;
   text-align:center;
 `
