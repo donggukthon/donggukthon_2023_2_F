@@ -38,6 +38,25 @@ const Header = () =>{
     case '/read':
       headerContents = '눈사람 도감';
       break;
+    case '/comment':
+      headerContents = '내 댓글 보기';
+      break;
+    case '/':
+      headerContents = '눈사람은 어디에?';
+      break;
+    case '/like':
+      headerContents = '좋아요한 게시물 보기';
+      break;
+    case '/main':
+      headerContents = '눈사람은 어디에??';
+      break;
+    case '/store':
+      headerContents = '저장한 게시물 보기';
+      break;
+
+    case '/see':
+      headerContents = '내 눈사람 보기';
+      break;
     case '/user/2' :
       headerContents = 'user@1234의 눈사람';
       break;
