@@ -1,22 +1,28 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import snowman from '../../assets/main/image_32.png'
-import PostBtn from '../../components/PostBtn'
+import backgroundImage from '../../assets/bg/backgroundimage.png';
+import Header from '../../components/Layout/Header'
+
 
 const Hello = () => {
 return (
-		<div style={{ textAlign: 'center' }}>
+		<>
+		<Header/>
+		<PostBg>
+		<div style={{ textAlign: 'center'  }}>
 		<h1>어서와요 사용자님!</h1>
 		<h1>만드신 눈사람은 0명이에요!</h1>
-
+		<div>
 		<Link to='/see' style={{ marginBottom: '10px' }}>
-				<PostBtn value='내 눈사람 보기'/>
-		</Link>
+		<p>내 눈사람 보기 </p>
 
-		<Link to='/commnet' style={{ marginBottom: '10px' }}>
+		</Link>
+		<span></span>
+		<Link to='/comment' style={{ marginBottom: '10px' }}>
 				<p>내 댓글 보기</p>
 		</Link>
-
+		</div>
 		<Link to='/like' style={{ marginBottom: '10px' }}>
 				<p>좋아요한 게시글 보기</p>
 		</Link>
@@ -25,27 +31,34 @@ return (
 				<p>저장한 게시글 보기</p>
 		</Link>
 
-    {/* 이미지와 텍스트를 감싸는 div */}
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        
-        <img
-        src={snowman} // 이미지 파일의 경로를 지정해주세요.
-        style={{ width: '200%', maxWidth: '400px', margin: '5px' }}
-        />
-    </div>
-    </div>
-);
 		{/* 이미지와 텍스트를 감싸는 div */}
 		<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-				<img
-				src={snowman} // 이미지 파일의 경로를 지정해주세요.
-				alt="눈사람임"
-				style={{ width: '100%', maxWidth: '100px', margin: '10px' }}
-				/>
-				<p style={{ marginRight: '40px', fontSize: '18px' }}>오늘 목도리 어떠요?</p>
 		</div>
 		</div>
+		</PostBg>
+		</>
+
 	);	
 };
 
+
+
+
+const PostBg = styled.div`
+padding: 0 24px;
+background: url(${backgroundImage}) no-repeat center center fixed;
+background-size: 55% ;
+background-position: center ;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+`;
+
 export default Hello;
+
+
+
+
+
