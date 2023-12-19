@@ -20,6 +20,9 @@ const AddPhoto = () =>{
     reader.readAsDataURL(file);
   }
 
+  const test = () => {
+    console.log(test)
+  }
   return (
     <>
       <Header />
@@ -35,7 +38,7 @@ const AddPhoto = () =>{
           </PhotoBox>
         </label>
         <InputPostFile type='file' id='snowmanUpload' accept='image/*' onChange={handelFileUpload}/>
-        <PostBtn value='다음' type='button' to='/post/text' />
+        <PostBtn value='다음' type='button' to='/post/text' onClick={test}/>
     </PostBg>
     </>
   );

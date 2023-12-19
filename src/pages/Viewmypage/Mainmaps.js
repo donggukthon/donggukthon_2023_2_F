@@ -1,17 +1,16 @@
 /*global kakao*/
 import Header from '../../components/Layout/Header'
-import { common } from '../../styles/Common';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import box from '../../assets/main/box.png';
 import backgroundImage from '../../assets/main/mainbackgroudimg.png';
 import backgroundImage1 from '../../assets/main/Group_713.png';
-import { styled, keyframes } from 'styled-components';
 import cloud from '../../assets/bg/Cloud.png'
 import home from '../../assets/main/home.png'
 import location from '../../assets/main/mylocation.png'
-
+import styled from '@emotion/styled'
+import {keyframes} from '@emotion/react'
 
 const Mainmaps = () => {
 	const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
@@ -22,6 +21,7 @@ const Mainmaps = () => {
 	const closeBottomSheet = () => {
 		setBottomSheetOpen(false);
 	};
+	
 	useEffect(() => {
 		var container = document.getElementById('map');
 		var options = {
@@ -92,12 +92,12 @@ return (
 };
 
 const snowfallAnimation = keyframes`
-0% {
-background-position: center bottom;
-}
-100% {
-background-position: center top;
-}
+	0% {
+	background-position: center bottom;
+	}
+	100% {
+	background-position: center top;
+	}
 `;
 
 const PostBg = styled.div`

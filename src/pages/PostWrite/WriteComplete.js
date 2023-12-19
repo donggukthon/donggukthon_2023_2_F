@@ -6,7 +6,7 @@ import { Link, useLocation  } from 'react-router-dom'
 import Close from '../../assets/icon/Close.png'
 import CopyURLSnowman from '../../assets/icon/CopyURLSnowman.png'
 import SaveSnowman from '../../assets/icon/SaveSnowman.png'
-import ShareKakao from '../../assets/icon/ShareKakao.png'
+import ShareKakaoImg from '../../assets/icon/ShareKakao.png'
 import { useRef } from 'react'
 import html2canvas from 'html2canvas'
 import { saveAs } from 'file-saver'
@@ -40,7 +40,7 @@ const WriteComplete = () => {
       alert('링크 복사에 실패하였습니다.');
     }
   };
-  
+
   const handleDownload = async () => {
     if (!saveSnowmanRef.current) return;
     try {
@@ -53,6 +53,42 @@ const WriteComplete = () => {
       })
     } catch (error) {
       console.error('Error converting div to image:', error)
+    }
+  }
+  
+  const ShareKakao = () => {
+    const kakao = window.Kakao;
+    const JAVASCRIPT_API_KEY = 'ad72385a83fbad8abbd735a1f9473931'
+    if( kakao.isInitialized() === false){
+      kakao.init(JAVASCRIPT_API_KEY) // 카카오에서 제공받은 javascript key를 넣어줌 
+    }
+    
+    if (kakao) {
+      kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: '제 눈사람 어때요?',
+          imageUrl: imageSrc,
+          link: {
+            mobileWebUrl: 'http://localhost:3000',
+            webUrl: 'http://localhost:3000',
+          },
+        },
+        // social: {
+        //   likeCount: 286,
+        //   commentCount: 45,
+        //   sharedCount: 845,
+        // },
+        buttons: [
+          {
+            title: '다른 눈사람 보러가기',
+            link: {
+              mobileWebUrl: 'http://localhost:3000',
+              webUrl: 'http://localhost:3000',
+            },
+          },
+        ],
+      });
     }
   }
 
@@ -86,8 +122,8 @@ const WriteComplete = () => {
             </button>
           </li>
           <li>
-            <button>
-              <img src={ShareKakao} alt='링크 복사' />
+            <button onClick={ShareKakao}>
+              <img src={ShareKakaoImg} alt='링크 복사' />
               <span>공유하기</span>
             </button>
           </li>

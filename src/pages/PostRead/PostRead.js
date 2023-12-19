@@ -13,6 +13,7 @@ import { setComment } from '../../redux/commentSlice'
 import { css } from '@emotion/react'
 import LikeCount from '../../components/LikeCount'
 import CommentCount from '../../components/CommentCount'
+import { Link } from 'react-router-dom'
 
 
 const PostRead = () =>{
@@ -43,7 +44,7 @@ const PostRead = () =>{
             </div> 
             <Userinfo>
               <img src={Stamp} alt='스탬프' />
-              1234@user
+              <Link to='/user/2'>1234@user</Link>
             </Userinfo>
           </SnowmanInfoBox>
           <SnowmanTextBox>

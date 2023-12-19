@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import backgroundImage from '../../assets/main/mainbackgroudimg.png';
 import backgroundImage1 from '../../assets/main/cutesnowman.png';
 import logoImage from '../../assets/main/mainlogo.png';  // 이미지 경로 추가
-import styled, { keyframes } from 'styled-components';
 import Header from '../../components/Layout/Header';
 import Cloud from '../../assets/bg/Cloud.png'
+import styled from '@emotion/styled'
+import {keyframes} from '@emotion/react'
 
 const Hello = () => {
 const navigate = useNavigate();
 
 const handleClick = () => {
-    // 클릭 시 이동할 경로를 지정합니다 ('/see'로 수정)
     navigate('/');
 };
 
