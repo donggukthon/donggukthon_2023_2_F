@@ -13,7 +13,7 @@ import { setComment } from '../../redux/commentSlice'
 
 const PostRead = () =>{
   const dispatch = useDispatch()
-  const comment = useSelector((state) => state.comment.comment)
+  const comment = useSelector((state) => state.comment)
 
   const handleCommentUpdate = (e) =>{
     dispatch(setComment({

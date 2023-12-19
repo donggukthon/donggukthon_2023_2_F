@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { common } from '../../styles/Common'
 
-const TitleWrap = ({ title, subTitle}) =>{
+const TitleWrap = ({title, subTitle}) =>{
   return (
     <>
       <Title>{title}</Title>

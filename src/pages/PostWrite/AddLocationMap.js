@@ -1,29 +1,24 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import styled from '@emotion/styled'
 import SnowmanMarker from '../../assets/map/SnowmanMarker.png'
+import CurrentLocationLoad from '../../assets/map/CurrentLocationLoad.png'
+import { useDispatch } from 'react-redux'
+import { getMap } from '../../redux/mapSlice'
 
 const MapContainer = () => {
-  const { kakao } = window;
+  const dispatch = useDispatch()
+  const mapElementRef = useRef(null);
 
   useEffect(() => {
-    createMap()
-  }, []);
-
-  const createMap = () => {
-    const container = document.getElementById('KakaoMap');
-    let options = {
-      center: new kakao.maps.LatLng(37.624915253753194, 127.15122688059974),
-      level: 5,
-    };
-    //map
-    const map = new kakao.maps.Map(container, options);
-  };
-
+    dispatch(getMap(mapElementRef.current))
+  }, [dispatch]);
+  
   return (
     <>
       <MapContainerWrap>
-        <div id='KakaoMap'></div>
-        <SnowmanMarkerImg src={SnowmanMarker} alt='지도 마커' />
+        <Map id='KakaoMap' ref={mapElementRef}></Map>
+        <SnowmanMarkerImg src={SnowmanMarker} alt='눈사람 지도 마커 이미지' />
+        <CurrentLocationBtn src={CurrentLocationLoad} alt='현재 위치 불러오기'/>
       </MapContainerWrap>
     </>
   )
@@ -35,6 +30,10 @@ const MapContainerWrap = styled.section`
   border-radius:10px;
   position:relative;
 `
+const Map = styled.div`
+  width:100%;
+  height:100%;
+`
 
 const SnowmanMarkerImg = styled.img`
   position:absolute;
@@ -45,4 +44,12 @@ const SnowmanMarkerImg = styled.img`
   filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.25));
   width: 50px;
 `
+
+const CurrentLocationBtn = styled.img`
+  position:absolute;
+  z-index:1;
+  bottom: 0;
+  right: 0;
+`
+
 export default MapContainer

@@ -2,15 +2,21 @@ import styled from '@emotion/styled'
 import { common } from '../../styles/Common'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPostDate } from '../../redux/postSlice'
-import { Link } from 'react-router-dom'
+import { Link, useLocation  } from 'react-router-dom'
 import Close from '../../assets/icon/Close.png'
 import CopyURLSnowman from '../../assets/icon/CopyURLSnowman.png'
 import SaveSnowman from '../../assets/icon/SaveSnowman.png'
 import ShareKakao from '../../assets/icon/ShareKakao.png'
+import { useRef } from 'react'
+import html2canvas from 'html2canvas'
+import { saveAs } from 'file-saver'
 
 
-const AddText = () =>{
+const WriteComplete = () => {
+  const saveSnowmanRef = useRef(null)
+  const baseUrl = `http://localhost:3000`
   const dispatch = useDispatch()
+  const currentLocation = useLocation()
   const imageSrc = useSelector((state) => state.post.imageSrc)
   const textContents = useSelector((state) => state.post.textContents)
   const postDate = useSelector((state) => state.post.postDate)
@@ -25,7 +31,31 @@ const AddText = () =>{
     dispatch(setPostDate(dateString))
     return postDate
   }
+
+  const handleCopyClipBoard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('링크가 복사되었습니다.');
+    } catch (error) {
+      alert('링크 복사에 실패하였습니다.');
+    }
+  };
   
+  const handleDownload = async () => {
+    if (!saveSnowmanRef.current) return;
+    try {
+      const div = saveSnowmanRef.current;
+      const canvas = await html2canvas(div, { scale: 2 });
+      canvas.toBlob((blob) => {
+        if (blob !== null) {
+          saveAs(blob, 'result.png');
+        }
+      })
+    } catch (error) {
+      console.error('Error converting div to image:', error)
+    }
+  }
+
   return (
     <PostBg>
       <CompleteTitleWrap>
@@ -34,7 +64,7 @@ const AddText = () =>{
           <img src={Close} alt='close' />
         </Link>
       </CompleteTitleWrap>
-      <CompleteCardWrap>
+      <CompleteCardWrap ref={saveSnowmanRef}>
         <CompleteImgWrap><img src={imageSrc} alt='새로 등록한 눈사람 이미지' /></CompleteImgWrap>
         <div>
           <CompleteName>{textContents?.title}</CompleteName>
@@ -44,13 +74,13 @@ const AddText = () =>{
       <div>
         <CompleteButtonWrap>
           <li>
-            <button>
+            <button onClick={() => handleCopyClipBoard(`${baseUrl}${currentLocation.pathname}`)}>
               <img src={CopyURLSnowman} alt='링크 복사' />
               <span>링크복사</span>
             </button>
           </li>
           <li>
-            <button>
+            <button onClick={handleDownload}>
               <img src={SaveSnowman} alt='링크 복사' />
               <span>다운로드</span>
             </button>
@@ -64,7 +94,7 @@ const AddText = () =>{
         </CompleteButtonWrap>
       </div>
     </PostBg>
-  );
+  )
 }
 
 const PostBg = styled.div`
@@ -105,8 +135,8 @@ const CompleteCardWrap = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 `
 const CompleteImgWrap = styled.div`
-  width:260px;
-  height:260px;
+  width:252px;
+  height:252px;
   overflow:hidden;
   border-radius:8px;
   display: flex;
@@ -120,7 +150,6 @@ const CompleteName = styled.h3`
 const CompleteBirth = styled.p`
   font-size:${common.fontSize.fz20};
 `
-
 const CompleteButtonWrap = styled.ul`
   width:240px;
   margin: 0 auto;
@@ -131,4 +160,4 @@ const CompleteButtonWrap = styled.ul`
     margin-bottom:8px;
   }
 `
-export default AddText
+export default WriteComplete
