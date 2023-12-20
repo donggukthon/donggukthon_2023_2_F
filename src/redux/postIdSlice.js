@@ -7,7 +7,7 @@ export const postIdSlice = createSlice({
   },
   reducers: {
     setPostId: (state, action) => {
-      state.value = action.payload;
+      state.id = action.payload;
     },
   },
 });

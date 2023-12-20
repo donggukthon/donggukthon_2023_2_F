@@ -33,8 +33,8 @@ const PageRoute = () =>{
       
       <Route path='/login' element={<LoginPage />}></Route>
 
-      <Route path='/info' element={<Info />}></Route>
-      <Route path='/main' element={<Mainpage />}></Route>
+      <Route path='/info' element={<Mainpage />}></Route>
+      <Route path='/main' element={<Info />}></Route>
       <Route path='/mypage' element={<Mypage />}></Route>
       <Route path='/see' element={<See  />}></Route>
       <Route path='/store' element={<Store  />} ></Route>

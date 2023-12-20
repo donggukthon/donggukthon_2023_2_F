@@ -12,36 +12,27 @@ import { BASE_URL, REDIRECT_URL} from '../utils/api'
 const LoginPage = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const ACCESS_TOKEN = useSelector((state) => state.token.value)
+  // const ACCESS_TOKEN = useSelector((state) => state.token.value)
 
   const loginHandler = () => {
     window.location.href = REDIRECT_URL
-    const checkInterval = setInterval(() => {
-      console.log(window.location.origin)
-      if (window.location.href === REDIRECT_URL) {
-        // 리다이렉션이 완료되었을 때의 로직
-        
-        const tokenValue = window.location.search.split('=')
-        dispatch(setToken(tokenValue[1]))
-        clearInterval(checkInterval)
-      }
-    }, 100); // 100ms 간격으로 확인
   }
 
-  useEffect(() => {
-    // Axios 인스턴스 생성  
-    axios.post({
-      baseURL: BASE_URL,  // API 엔드포인트의 기본 URL
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${ACCESS_TOKEN}`,
-      },
-    });
-  }, [ACCESS_TOKEN])
+  // useEffect(() => {
+  //   // Axios 인스턴스 생성  
+  //   axios.post({
+  //     baseURL: BASE_URL,  // API 엔드포인트의 기본 URL
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${ACCESS_TOKEN}`,
+  //     },
+  //   });
+  // }, [ACCESS_TOKEN])
 
   const BackLocation = () => {  
     navigate(-1)
   }
+
   return (
     <KakaoPopupWrap>
       <KakaoPopup>
@@ -66,7 +57,7 @@ const KakaoPopupWrap = styled.div`
   display:flex;
   align-items:center;
   justify-content:center;
-  height:100vh;
+  height: calc(var(--vh, 1vh) * 100);;
 `
 
 const KakaoPopup = styled.div`

@@ -10,15 +10,13 @@ import bg from '../../assets/bg/postBGGrey.png'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { BASE_URL } from '../../utils/api'
-import { setPostId } from '../../redux/postIdSlice'
+import { ACCESS_TOKEN } from '../../utils/api'
+import { setPostId } from '../../redux/postIdSlice' 
 
 const AddPhoto = () =>{
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const imageSrc = useSelector((state) => state.post.imageSrc)
-  const ACCESS_TOKEN = useSelector((state) => state.token.value)
-  // const postId = useSelector((state) => state.postId.id)
 
   // const file = useSelector((state) => state.post.file)
   const [multipartFile, setmultipartFile] = useState(null)
@@ -35,16 +33,16 @@ const AddPhoto = () =>{
   }
   // 서버 전달
   const handleUpload = async () => {
+    console.log(`access token value : ${ACCESS_TOKEN}`)
+
     const formData = new FormData()
     formData.append('multipartFile', multipartFile)
-    await axios.post(`${BASE_URL}/posting/image`, formData, {
+    await axios.post(`http://34.22.106.126:8080/posting/image`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+        'Authorization': 'Bearer ' + ACCESS_TOKEN,
       },
     }).then((result) => {
-      console.log(result.postingId)
-      dispatch(setPostId(result.postingId))
       navigate('/post/text')
     }).catch((error)=>{
       console.error(error)
@@ -75,7 +73,7 @@ const AddPhoto = () =>{
 const PostBg = styled.div`
   padding:0 24px;
   background:url(${bg}) no-repeat center/cover;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 `
 
 const InputPostFile = styled.input`

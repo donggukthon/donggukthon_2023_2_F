@@ -64,31 +64,31 @@ const Mainmaps = () => {
 
 return (
     <>
-            <Header />
-            <PostBg>
-                <PostBg1>
-                    <MapContainer>
-                        <div id="map" style={{ width: '300px', height: '500px' }}></div>
-                    </MapContainer>
+		<Header />
+		<PostBg>
+				<PostBg1>
+						<MapContainer>
+								<div id="map" style={{ width: '300px', height: '500px' }}></div>
+						</MapContainer>
 
-                    <ContentContainer>
-                        <Link to="/main">
-                            <button style={{ marginBottom: '10px', color: 'red', fontWeight: 'bold' }}>
-                                내 정보 보기
-                            </button>
-                        </Link>
-                        <Link to="/post/photo">
-                        <BoxImageContainer>
-                            <BoxImage src={box} alt="box" />
-                            <WhiteText>내 눈사람 등록하기</WhiteText>
-                        </BoxImageContainer>
-                        </Link>
-                    </ContentContainer>
-                </PostBg1>
-            </PostBg>
+						<ContentContainer>
+								<Link to="/main">
+										<button style={{ marginBottom: '10px', color: 'red', fontWeight: 'bold' }}>
+												내 정보 보기
+										</button>
+								</Link>
+								<Link to="/post/photo">
+								<BoxImageContainer>
+										<BoxImage src={box} alt="box" />
+										<WhiteText>내 눈사람 등록하기</WhiteText>
+								</BoxImageContainer>
+								</Link>
+						</ContentContainer>
+				</PostBg1>
+		</PostBg>
 
-            <Cloud src={cloud} alt='구름 배경화면' />
-        </>
+		<Cloud src={cloud} alt='구름 배경화면' />
+</>
 );
 };
 
@@ -106,7 +106,7 @@ padding: 0 24px;
 background: url(${backgroundImage}) no-repeat center center fixed;
 background-size: 200%;
 background-position: center;
-height: 100vh;
+height: calc(var(--vh, 1vh) * 100);100vh;
 display: flex;
 flex-direction: column;
 justify-content: center;

@@ -2,14 +2,12 @@ import { configureStore } from '@reduxjs/toolkit'
 import postSlice from './postSlice'
 import commentSlice from './commentSlice'
 import mapSlice from './mapSlice'
-import tokenSlice from './tokenSlice'
 
 export const store = configureStore({
   reducer: {
     post: postSlice,
     comment: commentSlice,
     postMap: mapSlice,
-    token: tokenSlice
   },
 })
 

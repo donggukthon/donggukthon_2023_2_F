@@ -9,13 +9,14 @@ import { setTextContents } from '../../redux/postSlice'
 import bg from '../../assets/bg/postBGGrey.png'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL } from '../../utils/api'
+import setPostId from '../../redux/postIdSlice'
+import { useEffect } from 'react'
 
 const AddText = () =>{
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const textContents = useSelector((state) => state.post.textContents)
-  const postID = useSelector((state) => state.postId.id)
-  const ACCESS_TOKEN = useSelector((state) => state.token.value)
+  const postId = useSelector((state) => state.postId.id)
 
   const handleTitleUpdate = (e) =>{
     dispatch(setTextContents({
@@ -31,22 +32,30 @@ const AddText = () =>{
     }))
   }
 
-  const handleUpload = async () => { 
-       
-    await axios.post(`${BASE_URL}/posting/description`, {
-      headers: {
-        'Authorization': `Bearer ${ACCESS_TOKEN}`,
-      },
-      body:{
-        'postingId': postID,
-        'snowmanName': textContents.title,
-        'snowmanNameDescription': textContents.contents
-      }
-    }).then((result) => {
-      navigate('/post/location')
-    }).catch((error)=>{
-      console.error(error)
-    })
+  // useEffect(() => {
+  //   axios.get('http://34.22.106.126:8080/posting/image')
+  //     .then((response) => {
+  //       // 글로벌 상태에 카테고리를 저장합니다.
+  //       dispatch(setPostId(response.data));
+  //     })
+  //     .catch((error) => {
+  //       // 에러 핸들링
+  //       console.error('Error fetching categories:', error);
+  //     });
+  // }, [dispatch]);
+
+  const handleUpload = ()=> { 
+    // await axios.post(`http://34.22.106.126:8080/posting/description`, {
+    //   body:{
+    //     'postingId': postID,
+    //     'snowmanName': textContents.title,
+    //     'snowmanNameDescription': textContents.contents
+    //   }
+    // }).then((result) => {
+    //   navigate('/post/location')
+    // }).catch((error)=>{
+    //   console.error(error)
+    // })
   }
 
   return (
@@ -65,7 +74,7 @@ const AddText = () =>{
 const PostBg = styled.div`
   padding:0 24px;
   background:url(${bg}) no-repeat center/cover;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 `
 
 const sharedInputStyles = `
