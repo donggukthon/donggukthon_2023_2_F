@@ -24,7 +24,8 @@ const PageRoute = () =>{
   const { id } = useParams();
   return (
     <Routes>
-      <Route path='/' element={<Mainmaps />}></Route>
+      <Route path='/' element={<Info />}></Route>
+      <Route path='/map' element={<Mainmaps />}></Route>
       <Route path='/post/photo' element={<AddPhoto />}></Route>
       <Route path='/post/text' element={<AddText />}></Route>
       <Route path='/post/location' element={<AddLocation />}></Route>
@@ -34,15 +35,10 @@ const PageRoute = () =>{
       <Route path='infogui' element={<Infogui/>}></Route>
       <Route path='/login' element={<LoginPage />}></Route>
 
-<<<<<<< HEAD
-      <Route path='/info' element={<Mainpage />}></Route>
-      <Route path='/main' element={<Info />}></Route>
-=======
+      <Route path='/mypage' element={<Mainpage />}></Route>
+      <Route path='/main' element={<Mainmaps />}></Route>
       <Route path='/click' element={<Clicksnow/>}></Route>
-      <Route path='/info' element={<Info />}></Route>
-      <Route path='/main' element={<Mainpage />}></Route>
->>>>>>> upstream/master
-      <Route path='/mypage' element={<Mypage />}></Route>
+      {/* <Route path='/mypage' element={<Mypage />}></Route> */}
       <Route path='/see' element={<See  />}></Route>
       <Route path='/store' element={<Store  />} ></Route>
       <Route path='/like' element={<Like  />} ></Route>

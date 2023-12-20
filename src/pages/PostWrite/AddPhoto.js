@@ -64,7 +64,8 @@ const AddPhoto = () =>{
           </PhotoBox>
         </label>
         <InputPostFile type='file' id='snowmanUpload' accept='image/*' onChange={handelFileUpload}/>
-        <PostBtn value='다음' type='button' onClick={handleUpload}/>
+        {/* <PostBtn value='다음' type='button' onClick={handleUpload}/> */}
+        <PostBtn value='다음' type='button' to='/post/text'/>
     </PostBg>
     </>
   );

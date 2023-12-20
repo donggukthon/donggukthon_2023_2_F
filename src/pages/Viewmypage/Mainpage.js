@@ -8,13 +8,18 @@ import SeeIcon from '../../assets/icon/see.png';
 import StoreIcon from '../../assets/icon/store.png';
 import CommentIcon from '../../assets/icon/comment.png';
 import Mainbox from '../../assets/main/Mainbox.png';
+
 const MyPageInfo = () => {
+	const [token, setToken] = useState(null)
+
 	useEffect(()=>{
 		const tokenValue = window.location.search.split('=')
 		const ACCESS_TOKEN = tokenValue[1]
 		localStorage.setItem('access_token', ACCESS_TOKEN)
-	},[])
+		setToken(ACCESS_TOKEN)
+	},[token]);
 	
+	localStorage.setItem('access_token', 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImV4cCI6MTcwMzA2MTQyMH0.1pMRmBNrv7qpoMMRErQU20B3GYVFdYCS7H1cjuriKkw')
 
 return (
 	<>
@@ -67,13 +72,17 @@ font-weight: bold;
 `;
 
 const LinkWrapper = styled.div`
+width:100%;
 text-align: left;
 display: flex;
 align-items: center;
 margin: 10px 0 10px 0; 
 font-weight: bold;
 color: #4F0D0D; 
-font-size: 1.6em; /* 원하는 폰트 크기로 조절, 예: 1.2em */
+font-size: 1.6em;
+p{
+	width:100%;
+}
 
 `;
 

@@ -5,23 +5,23 @@ import ButtonBG from '../assets/bg/ButtonBG.png'
 
 const PostBtn= ({to, type, value, onClick}) =>{
   return (
-    // <StyledLink to={to}>
+    <StyledLink to={to}>
       <Button type={type} onClick={onClick}>
         {value}
         <img src={ButtonBG} alt={value}/>
       </Button>
-    // </StyledLink>
+    </StyledLink>
   )
 }
 
-// const StyledLink = styled(Link)`
-  // display:block;
-  // position: fixed;
-  // width: 100%;
-  // right: 0;
-  // padding: 0 ${common.padding};
-  // bottom: 10%;
-// `
+const StyledLink = styled(Link)`
+  display:block;
+  position: fixed;
+  width: 100%;
+  right: 0;
+  padding: 0 ${common.padding};
+  bottom: 10%;
+`
 
 const Button = styled.button`
   display:block;

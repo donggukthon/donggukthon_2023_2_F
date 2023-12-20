@@ -22,8 +22,15 @@ const App = () =>{
     setScreenSize();
   }); 
 
+  // useEffect(() => {
+  //   console.log("start to load kakao maps api")
+  //   const kakaoMapScript = document.createElement("script");
+  //   kakaoMapScript.async = false;
+  //   kakaoMapScript.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=ad72385a83fbad8abbd735a1f9473931&libraries=services,clusterer";
+  //   document.head.appendChild(kakaoMapScript);
+  // },[])
   
-
+ 
   return (
     <BrowserRouter>
       <Global styles={reset} />

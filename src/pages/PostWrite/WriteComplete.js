@@ -14,7 +14,7 @@ import bg from '../../assets/bg/postBGGrey.png'
 
 const WriteComplete = () => {
   const saveSnowmanRef = useRef(null)
-  const baseUrl = `http://localhost:3000`
+  const baseUrl = `http://10.62.2.75:3000`
   const dispatch = useDispatch()
   const currentLocation = useLocation()
   const imageSrc = useSelector((state) => state.post.imageSrc)
@@ -34,9 +34,9 @@ const WriteComplete = () => {
 
   const handleCopyClipBoard = async (text) => {
     try {
-      await navigator.clipboard.writeText(text);
-      alert('링크가 복사되었습니다.');
-    } catch (error) {
+       await navigator.clipboard.writeText(text);
+        alert('링크가 복사되었습니다.');
+      } catch (error) {
       alert('링크 복사에 실패하였습니다.');
     }
   };
@@ -57,14 +57,13 @@ const WriteComplete = () => {
   }
   
   const ShareKakao = () => {
-    const kakao = window.Kakao;
-    const JAVASCRIPT_API_KEY = 'ad72385a83fbad8abbd735a1f9473931'
-    if( kakao.isInitialized() === false){
-      kakao.init(JAVASCRIPT_API_KEY) // 카카오에서 제공받은 javascript key를 넣어줌 
-    }
+    // const JAVASCRIPT_API_KEY = '86f2f2ab4e164e4c9ecb558176100068'
+    // if( window.Kakao.isInitialized() === false){
+    //   window.Kakao.init(JAVASCRIPT_API_KEY) // 카카오에서 제공받은 javascript key를 넣어줌 
+    // }
     
-    if (kakao) {
-      kakao.Share.sendDefault({
+    if (window.Kakao) {
+      window.Kakao.Share.sendDefault({
         objectType: 'feed',
         content: {
           title: '제 눈사람 어때요?',
@@ -74,11 +73,6 @@ const WriteComplete = () => {
             webUrl: 'http://localhost:3000',
           },
         },
-        // social: {
-        //   likeCount: 286,
-        //   commentCount: 45,
-        //   sharedCount: 845,
-        // },
         buttons: [
           {
             title: '다른 눈사람 보러가기',
@@ -100,13 +94,32 @@ const WriteComplete = () => {
           <img src={Close} alt='close' />
         </Link>
       </CompleteTitleWrap>
-      <CompleteCardWrap ref={saveSnowmanRef}>
+      <CompleteCardWrap ref={saveSnowmanRef} >
         <CompleteImgWrap><img src={imageSrc} alt='새로 등록한 눈사람 이미지' /></CompleteImgWrap>
         <div>
           <CompleteName>{textContents?.title}</CompleteName>
           <CompleteBirth>{getTodayDate()}</CompleteBirth>
         </div>
       </CompleteCardWrap>
+      <ColorPickerWrap>
+        <ColorPicker>
+          <ColorFF588A></ColorFF588A>
+          <Color646464></Color646464>
+          <ColorCFDDFF></ColorCFDDFF>
+          <ColorC3A1C9></ColorC3A1C9>
+          <ColorA6D4AB></ColorA6D4AB>
+          <Color396639></Color396639>
+          <Color860F32></Color860F32>
+        </ColorPicker>
+        <ColorPicker>
+          <Color7FAEA6></Color7FAEA6>
+          <ColorFFC700></ColorFFC700>
+          <ColorFF8A00></ColorFF8A00>
+          <Color867FAE></Color867FAE>
+          <ColorFF5353></ColorFF5353>
+          <Color171235></Color171235>
+        </ColorPicker>
+      </ColorPickerWrap>
       <div>
         <CompleteButtonWrap>
           <li>
@@ -117,13 +130,13 @@ const WriteComplete = () => {
           </li>
           <li>
             <button onClick={handleDownload}>
-              <img src={SaveSnowman} alt='링크 복사' />
+              <img src={SaveSnowman} alt='이미지 다운로드' />
               <span>다운로드</span>
             </button>
           </li>
           <li>
             <button onClick={ShareKakao}>
-              <img src={ShareKakaoImg} alt='링크 복사' />
+              <img src={ShareKakaoImg} alt='공유' />
               <span>공유하기</span>
             </button>
           </li>
@@ -188,12 +201,72 @@ const CompleteBirth = styled.p`
 `
 const CompleteButtonWrap = styled.ul`
   width:240px;
-  margin: 0 auto;
+  margin: 45px auto 0;
   display:flex;
   justify-content:space-between;
   img{
     display:block;
     margin-bottom:8px;
   }
+`
+
+const ColorPickerWrap = styled.div`
+  display:flex;
+  justify-content:center;
+  flex-wrap: wrap;
+`
+
+const ColorPicker = styled.ul`
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  li{
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    border:2px solid #fff;
+    margin-right:10px;
+  }
+`
+const ColorFF588A = styled.li`
+  background:${common.saveColors.pink};
+`
+const Color646464 =styled.li`
+  background:${common.saveColors.grey};
+`
+
+
+const ColorCFDDFF =styled.li`
+  background:${common.saveColors.skyblue};
+`
+const ColorC3A1C9 =styled.li`
+  background:${common.saveColors.purple};
+`
+const ColorA6D4AB =styled.li`
+  background:${common.saveColors.lightGreen};
+`
+const Color396639 =styled.li`
+  background:${common.saveColors.darkGreen};
+`
+const Color860F32 =styled.li`
+background:${common.saveColors.darkRed};
+`
+const Color7FAEA6 =styled.li`
+background:${common.saveColors.mint};
+`
+const ColorFFC700 =styled.li`
+background:${common.saveColors.yellow};
+`
+const ColorFF8A00 =styled.li`
+background:${common.saveColors.orange};
+`
+const Color867FAE =styled.li`
+background:${common.saveColors.darkPurple};
+`
+const ColorFF5353 =styled.li`
+background:${common.saveColors.fruit};
+`
+const Color171235 =styled.li`
+background:${common.saveColors.darkNavy};
 `
 export default WriteComplete

@@ -21,7 +21,7 @@ return (
 			내 주위의 눈사람을 찾아보세요!
 			</StyledParagraph>
 			<SnowmanImg>
-				<Link to='/'><span>화면을 클릭해주세요.</span></Link>
+				<Link to='/map'><p>화면을 클릭해주세요.</p></Link>
 				<img src={SnowmanDrawImg} alt="Logo" />
 			</SnowmanImg>
 		</PostBg>
@@ -87,7 +87,7 @@ const SnowmanImg = styled.div`
 	font-size:${common.fontSize.fz16};
 	text-decoration:underline;
 	z-index:1;
-	span{
+	p{
 		position:absolute;
 		left:50%;
 		transform:translateX(-50%);
