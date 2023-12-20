@@ -32,22 +32,22 @@ const AddPhoto = () =>{
     reader.readAsDataURL(multipartFile)
   }
   // 서버 전달
-  const handleUpload = async () => {
-    console.log(`access token value : ${ACCESS_TOKEN}`)
+  // const handleUpload = async () => {
+  //   console.log(`access token value : ${ACCESS_TOKEN}`)
 
-    const formData = new FormData()
-    formData.append('multipartFile', multipartFile)
-    await axios.post(`http://34.22.106.126:8080/posting/image`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'Authorization': 'Bearer ' + ACCESS_TOKEN,
-      },
-    }).then((result) => {
-      navigate('/post/text')
-    }).catch((error)=>{
-      console.error(error)
-    })
-  }
+  //   const formData = new FormData()
+  //   formData.append('multipartFile', multipartFile)
+  //   await axios.post(`http://34.22.106.126:8080/posting/image`, formData, {
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data',
+  //       'Authorization': 'Bearer ' + ACCESS_TOKEN,
+  //     },
+  //   }).then((result) => {
+  //     navigate('/post/text')
+  //   }).catch((error)=>{
+  //     console.error(error)
+  //   })
+  // }
 
   return (
     <>
@@ -64,7 +64,8 @@ const AddPhoto = () =>{
           </PhotoBox>
         </label>
         <InputPostFile type='file' id='snowmanUpload' accept='image/*' onChange={handelFileUpload}/>
-        <PostBtn value='다음' type='button' onClick={handleUpload}/>
+        {/* <PostBtn value='다음' type='button' onClick={handleUpload}/> */}
+        <PostBtn value='다음' type='button' to='/post/text'/>
     </PostBg>
     </>
   );

@@ -21,6 +21,6 @@ const AddText = () =>{
 const PostBg = styled.div`
   padding:0 ${common.padding};
   background:url(${bg}) no-repeat center/cover;
-  height: calc(var(--vh, 1vh) * 100);
+  height: calc(var(--vh, 1vh) * 100);t
 `
 export default AddText

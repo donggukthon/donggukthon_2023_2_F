@@ -44,19 +44,19 @@ const AddText = () =>{
   //     });
   // }, [dispatch]);
 
-  const handleUpload = ()=> { 
-    // await axios.post(`http://34.22.106.126:8080/posting/description`, {
-    //   body:{
-    //     'postingId': postID,
-    //     'snowmanName': textContents.title,
-    //     'snowmanNameDescription': textContents.contents
-    //   }
-    // }).then((result) => {
-    //   navigate('/post/location')
-    // }).catch((error)=>{
-    //   console.error(error)
-    // })
-  }
+  // const handleUpload = ()=> { 
+  //   await axios.post(`http://34.22.106.126:8080/posting/description`, {
+  //     body:{
+  //       'postingId': postID,
+  //       'snowmanName': textContents.title,
+  //       'snowmanNameDescription': textContents.contents
+  //     }
+  //   }).then((result) => {
+  //     navigate('/post/location')
+  //   }).catch((error)=>{
+  //     console.error(error)
+  //   })
+  // }
 
   return (
     <>
@@ -65,7 +65,8 @@ const AddText = () =>{
         <TitleWrap title='우리 눈사람을 소개할게요!' subTitle='눈사람에 대해 작성해주세요.'/>
         <InputPostTitle name='title' placeholder='제목' onChange={handleTitleUpdate} value={textContents.title} />
         <InputPostContent name='contents' placeholder='내용' onChange={handleContentsUpdate} value={textContents.contents}/>    
-        <PostBtn value='다음' type='button' onClick={handleUpload}/>
+        {/* <PostBtn value='다음' type='button' onClick={handleUpload}/> */}
+        <PostBtn value='다음' type='button' to='/post/location'/>
       </PostBg>
     </>
   );

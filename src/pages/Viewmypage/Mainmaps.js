@@ -11,6 +11,7 @@ import home from '../../assets/main/home.png'
 import location from '../../assets/main/mylocation.png'
 import styled from '@emotion/styled'
 import {keyframes} from '@emotion/react'
+import { ACCESS_TOKEN } from '../../utils/api';
 const Mainmaps = () => {
 
 const moveToCurrentLocation = (event) => {
@@ -41,11 +42,11 @@ useEffect(() => {
     center: new kakao.maps.LatLng(37.55773506, 127.0019409),
     level: 3,
     };
-    
+
     // Assign 'map' here
     map = new kakao.maps.Map(container, options);
 
-    var imageSrc = '/snowpin.png';
+    var imageSrc = '/cutesnowman.png';
     var imageSize = new kakao.maps.Size(64, 69);
     var imageOption = { offset: new kakao.maps.Point(27, 69) };
     var positions = [
@@ -83,38 +84,74 @@ useEffect(() => {
     marker.setMap(map);
 
     kakao.maps.event.addListener(marker, 'click', function () {
-        window.location.href = '/click';
+        alert(position.title);
     });
     });
 }, []);
 
 return (
     <>
-		<Header />
-		<PostBg>
-				<PostBg1>
-						<MapContainer>
-								<div id="map" style={{ width: '300px', height: '500px' }}></div>
-						</MapContainer>
+            <Header />
+            <PostBg>
+                <PostBg1>
+                    <MapContainer>
+                        <div id="map" style={{ width: '300px', height: '500px' }}></div>
+                    </MapContainer>
 
                     <ContentContainer>
                         <Link to="/main">
                             <button style={{ marginBottom: '10px', color: 'red', fontWeight: 'bold' }}>
-                                내 정보 보기
                             </button>
+                            <div>
+                                <button onClick={moveToCurrentLocation}></button>
+                            </div>
+
                         </Link>
-                        <Link to="/post/photo">
-                        <BoxImageContainer>
-                            <BoxImage src={box} alt="box" />
-                            <WhiteText>내 눈사람 등록하기</WhiteText>
-                        </BoxImageContainer>
-                        </Link>
+                        {
+                            (
+                                ACCESS_TOKEN === undefined? 
+                                <Link to="/post/photo">
+                                    <BoxImageContainer>
+                                        <BoxImage src={box} alt="box" />
+                                        <WhiteText>내 눈사람 등록하기</WhiteText>
+                                    </BoxImageContainer>    
+                                </Link>
+                                : 
+                                <Link to="/login">
+                                    <BoxImageContainer>
+                                        <BoxImage src={box} alt="box" />
+                                        <WhiteText>내 눈사람 등록하기</WhiteText>
+                                    </BoxImageContainer>    
+                                </Link>
+                            )
+                        } 
+                        {
+                            (
+                                ACCESS_TOKEN === undefined ? 
+                                <Link to="/mypage">
+                                    <BoxImageContainer1>
+                                        <img src={home}/>
+                                    </BoxImageContainer1>
+                                </Link>
+                                : 
+                                <Link to="/login">
+                                    <BoxImageContainer1>
+                                        <img src={home}/>
+                                    </BoxImageContainer1>
+                                </Link>
+                            )
+                        }
+
+
+                        <BoxImageContainer2>
+                                <img src={location} alt="Location" onClick={moveToCurrentLocation} />
+                        </BoxImageContainer2>
                     </ContentContainer>
                 </PostBg1>
             </PostBg>
 
-		<Cloud src={cloud} alt='구름 배경화면' />
-</>
+            <Cloud src={cloud} alt='구름 배경화면' />
+        </>
 );
 };
 
@@ -132,7 +169,7 @@ padding: 0 24px;
 background: url(${backgroundImage}) no-repeat center center fixed;
 background-size: 200%;
 background-position: center;
-height: calc(var(--vh, 1vh) * 100);100vh;
+height: 100vh;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -174,7 +211,6 @@ const BoxImageContainer = styled.div`
     top: 500%;
     transform: translateY(-50%);
     z-index:2;
-
 `;
 const BoxImageContainer1 = styled.div`
     position: absolute;
@@ -182,7 +218,6 @@ const BoxImageContainer1 = styled.div`
     top: 500%;
     transform: translateY(-50%);
     z-index:2;
-
 `;
 const BoxImageContainer2 = styled.div`
     position: absolute;
@@ -190,7 +225,6 @@ const BoxImageContainer2 = styled.div`
     top: 500%;
     transform: translateY(-50%);
     z-index:2;
-
 `;
 
 
@@ -218,6 +252,3 @@ width: 200%;
 z-index:1;
 `
 export default Mainmaps;
-
-
-

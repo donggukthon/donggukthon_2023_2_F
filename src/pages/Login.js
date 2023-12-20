@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch, useSelector} from 'react-redux'
 import { setToken } from '../redux/tokenSlice'
-import { BASE_URL, REDIRECT_URL} from '../utils/api'
+import { BASE_URL, REDIRECT_URL, ACCESS_TOKEN} from '../utils/api'
 
 const LoginPage = () => {
   const navigate = useNavigate()
