@@ -7,7 +7,7 @@ export const store = configureStore({
   reducer: {
     post: postSlice,
     comment: commentSlice,
-    postMap: mapSlice
+    postMap: mapSlice,
   },
 })
 

@@ -14,7 +14,8 @@ import { css } from '@emotion/react'
 import LikeCount from '../../components/LikeCount'
 import CommentCount from '../../components/CommentCount'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios'
+import { BASE_URL, ACCESS_TOKEN } from '../../utils/api'
 
 const PostRead = () =>{
   const dispatch = useDispatch()
@@ -25,6 +26,16 @@ const PostRead = () =>{
       ...comment,
       text: e.target.value,
     }))
+  }
+
+  const handleUpload = async () => {
+    await axios.post(`${BASE_URL}/posting/{postingId}/comment`, {
+      headers: {
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+      }, body:{
+        content:comment,
+      }
+    })
   }
 
   return (
@@ -84,7 +95,7 @@ const PostRead = () =>{
         <Line></Line>
         <CommentBox>
           <InputPostComment type='text' name='comment' placeholder='댓글을 입력해주세요' onChange={handleCommentUpdate} value={comment.value} />
-          <div><img src={Send} alt='댓글 전송'/></div>
+          <div onClick={handleUpload}><img src={Send} alt='댓글 전송'/></div>
         </CommentBox>
       </PostBg>
     </>

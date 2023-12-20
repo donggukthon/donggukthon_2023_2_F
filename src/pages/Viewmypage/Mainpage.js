@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import backgroundImage from '../../assets/bg/backgroundimage.png';
@@ -8,7 +8,14 @@ import SeeIcon from '../../assets/icon/see.png';
 import StoreIcon from '../../assets/icon/store.png';
 import CommentIcon from '../../assets/icon/comment.png';
 import Mainbox from '../../assets/main/Mainbox.png';
-const Hello = () => {
+const MyPageInfo = () => {
+	useEffect(()=>{
+		const tokenValue = window.location.search.split('=')
+		const ACCESS_TOKEN = tokenValue[1]
+		localStorage.setItem('access_token', ACCESS_TOKEN)
+	},[])
+	
+
 return (
 	<>
 	<Header />
@@ -81,11 +88,11 @@ padding: 0 12px;
 background: url(${backgroundImage}) no-repeat center center fixed;
 background-size: 100%;
 background-position: center;
-height: 100vh;
+height: calc(var(--vh, 1vh) * 100);100vh;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 `;
 
-export default Hello;
+export default MyPageInfo;

@@ -90,21 +90,18 @@ useEffect(() => {
 
 return (
     <>
-            <Header />
-            <PostBg>
-                <PostBg1>
-                    <MapContainer>
-                        <div id="map" style={{ width: '300px', height: '500px' }}></div>
-                    </MapContainer>
+		<Header />
+		<PostBg>
+				<PostBg1>
+						<MapContainer>
+								<div id="map" style={{ width: '300px', height: '500px' }}></div>
+						</MapContainer>
 
                     <ContentContainer>
                         <Link to="/main">
                             <button style={{ marginBottom: '10px', color: 'red', fontWeight: 'bold' }}>
+                                내 정보 보기
                             </button>
-                            <div>
-                                <button onClick={moveToCurrentLocation}></button>
-                            </div>
-                            
                         </Link>
                         <Link to="/post/photo">
                         <BoxImageContainer>
@@ -112,22 +109,12 @@ return (
                             <WhiteText>내 눈사람 등록하기</WhiteText>
                         </BoxImageContainer>
                         </Link>
-
-                        <Link to="/main">
-                        <BoxImageContainer1>
-                            <img src={home}/>
-                        </BoxImageContainer1>
-                        </Link>
-
-                        <BoxImageContainer2>
-                                <img src={location} alt="Location" onClick={moveToCurrentLocation} />
-                        </BoxImageContainer2>
                     </ContentContainer>
                 </PostBg1>
             </PostBg>
 
-            <Cloud src={cloud} alt='구름 배경화면' />
-        </>
+		<Cloud src={cloud} alt='구름 배경화면' />
+</>
 );
 };
 
@@ -145,7 +132,7 @@ padding: 0 24px;
 background: url(${backgroundImage}) no-repeat center center fixed;
 background-size: 200%;
 background-position: center;
-height: 100vh;
+height: calc(var(--vh, 1vh) * 100);100vh;
 display: flex;
 flex-direction: column;
 justify-content: center;

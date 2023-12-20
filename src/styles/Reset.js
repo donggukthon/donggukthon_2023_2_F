@@ -1,6 +1,10 @@
 import { css } from '@emotion/react'
 
 export const reset = css`
+  :root {
+    --vh: 100%;
+  }
+  
   @font-face {
     font-family: 'MaplestoryOTFLight';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFLight.woff') format('woff');

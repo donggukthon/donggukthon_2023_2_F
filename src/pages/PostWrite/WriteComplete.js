@@ -136,7 +136,7 @@ const WriteComplete = () => {
 const PostBg = styled.div`
   padding:0 24px;
   background:url(${bg}) no-repeat center/cover;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   text-align:center;
 `
 

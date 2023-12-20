@@ -1,19 +1,38 @@
+import axios from 'axios'
 import styled from '@emotion/styled'
 import KakaoLoginImg from '../assets/icon/KakaoLoginImg.png'
 import CloseRed from '../assets/icon/CloseRed.png'
 import { common } from '../styles/Common'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch, useSelector} from 'react-redux'
+import { setToken } from '../redux/tokenSlice'
+import { BASE_URL, REDIRECT_URL} from '../utils/api'
 
-const REDIRECT_URI = 'http://34.22.106.126:8080/oauth2/authorization/kakao'
 const LoginPage = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  // const ACCESS_TOKEN = useSelector((state) => state.token.value)
+
   const loginHandler = () => {
-    window.location.href = REDIRECT_URI
+    window.location.href = REDIRECT_URL
   }
-  
+
+  // useEffect(() => {
+  //   // Axios 인스턴스 생성  
+  //   axios.post({
+  //     baseURL: BASE_URL,  // API 엔드포인트의 기본 URL
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${ACCESS_TOKEN}`,
+  //     },
+  //   });
+  // }, [ACCESS_TOKEN])
+
   const BackLocation = () => {  
     navigate(-1)
   }
+
   return (
     <KakaoPopupWrap>
       <KakaoPopup>
@@ -38,7 +57,7 @@ const KakaoPopupWrap = styled.div`
   display:flex;
   align-items:center;
   justify-content:center;
-  height:100vh;
+  height: calc(var(--vh, 1vh) * 100);;
 `
 
 const KakaoPopup = styled.div`

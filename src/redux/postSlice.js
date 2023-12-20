@@ -4,6 +4,7 @@ import imgInit from '../assets/bg/imgInit.png'
 export const postSlice = createSlice({
   name: 'post',
   initialState: {
+    file:null,
     imageSrc: imgInit,
     textContents: {
       title: '',
@@ -11,8 +12,11 @@ export const postSlice = createSlice({
     },
   },
   reducers: {
-    setImageSrc: (state, action) => {
+    setImage: (state, action) => {
       state.imageSrc = action.payload;
+    },
+    setFile: (state, action) => {
+      state.file = action.payload.file;
     },
     setTextContents: (state, action) => {
       state.textContents.title = action.payload.title;
@@ -24,5 +28,5 @@ export const postSlice = createSlice({
   },
 });
 
-export const { setImageSrc, setTextContents, setPostDate } = postSlice.actions;
+export const { setImage, setTextContents, setPostDate, setFile } = postSlice.actions;
 export default postSlice.reducer;

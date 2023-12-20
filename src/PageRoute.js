@@ -34,9 +34,14 @@ const PageRoute = () =>{
       <Route path='infogui' element={<Infogui/>}></Route>
       <Route path='/login' element={<LoginPage />}></Route>
 
+<<<<<<< HEAD
+      <Route path='/info' element={<Mainpage />}></Route>
+      <Route path='/main' element={<Info />}></Route>
+=======
       <Route path='/click' element={<Clicksnow/>}></Route>
       <Route path='/info' element={<Info />}></Route>
       <Route path='/main' element={<Mainpage />}></Route>
+>>>>>>> upstream/master
       <Route path='/mypage' element={<Mypage />}></Route>
       <Route path='/see' element={<See  />}></Route>
       <Route path='/store' element={<Store  />} ></Route>
