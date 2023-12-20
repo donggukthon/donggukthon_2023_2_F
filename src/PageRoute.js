@@ -16,7 +16,8 @@ import Mainpage from './pages/Viewmypage/Mainpage'
 import Mainmaps from './pages/Viewmypage/Mainmaps'
 import LoginPage from './pages/Login.js'
 import Info from "./pages/Viewmypage/info"
-
+import Infogui from "./pages/Viewmypage/infogui"
+import Clicksnow from "./pages/Viewmypage/Clicksnowman"
 
 
 const PageRoute = () =>{
@@ -30,11 +31,17 @@ const PageRoute = () =>{
       <Route path='/post' element={<WriteComplete />}></Route>
       <Route path='/read' element={<PostRead />}></Route>
       <Route path='/user/:id' element={<PostOtherUserView userId={id} />}></Route>
-      
+      <Route path='infogui' element={<Infogui/>}></Route>
       <Route path='/login' element={<LoginPage />}></Route>
 
+<<<<<<< HEAD
       <Route path='/info' element={<Mainpage />}></Route>
       <Route path='/main' element={<Info />}></Route>
+=======
+      <Route path='/click' element={<Clicksnow/>}></Route>
+      <Route path='/info' element={<Info />}></Route>
+      <Route path='/main' element={<Mainpage />}></Route>
+>>>>>>> upstream/master
       <Route path='/mypage' element={<Mypage />}></Route>
       <Route path='/see' element={<See  />}></Route>
       <Route path='/store' element={<Store  />} ></Route>

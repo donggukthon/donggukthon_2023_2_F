@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { common } from '../../styles/Common'
 import Preview from '../../assets/icon/Preview.png'
 import cloud from '../../assets/bg/Cloud.png'
+import Mainlogo from '../../assets/main/mainlogo.png'
 
 const Header = () =>{
   const location = useLocation()
@@ -42,14 +43,20 @@ const Header = () =>{
       headerContents = '내 댓글 보기';
       break;
     case '/':
-      headerContents = '눈사람은 어디에?';
+      headerContents = 
+        <WriteProgressWrap>
+            <img src={Mainlogo} style={{ width: '100px', height: 'auto' }} />
+        </WriteProgressWrap>;
       break;
     case '/like':
       headerContents = '좋아요한 게시물 보기';
       break;
     case '/main':
-      headerContents = '눈사람은 어디에??';
-      break;
+      headerContents = 
+        <WriteProgressWrap>
+            <img src={Mainlogo} style={{ width: '100px', height: 'auto' }} />
+        </WriteProgressWrap>;
+        break;
     case '/store':
       headerContents = '저장한 게시물 보기';
       break;
