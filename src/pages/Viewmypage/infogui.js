@@ -45,7 +45,7 @@ useEffect(() => {
     // Assign 'map' here
     map = new kakao.maps.Map(container, options);
 
-    var imageSrc = '/snowpin.png';
+    var imageSrc = '/cutesnowman.png';
     var imageSize = new kakao.maps.Size(64, 69);
     var imageOption = { offset: new kakao.maps.Point(27, 69) };
     var positions = [
@@ -83,7 +83,7 @@ useEffect(() => {
     marker.setMap(map);
 
     kakao.maps.event.addListener(marker, 'click', function () {
-        window.location.href = '/click';
+        alert(position.title);
     });
     });
 }, []);
