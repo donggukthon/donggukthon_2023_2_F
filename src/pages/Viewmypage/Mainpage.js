@@ -2,53 +2,85 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import backgroundImage from '../../assets/bg/backgroundimage.png';
-import Header from '../../components/Layout/Header'
-
-
+import Header from '../../components/Layout/Header';
+import likeIcon from '../../assets/icon/like.png';
+import SeeIcon from '../../assets/icon/see.png';
+import StoreIcon from '../../assets/icon/store.png';
+import CommentIcon from '../../assets/icon/comment.png';
+import Mainbox from '../../assets/main/Mainbox.png';
 const Hello = () => {
 return (
-		<>
-		<Header/>
-		<PostBg>
-		<div style={{ textAlign: 'center'  }}>
+	<>
+	<Header />
+	<PostBg>
+		<ContentWrapper>
 		<h1>어서와요 사용자님!</h1>
 		<h1>만드신 눈사람은 0명이에요!</h1>
-		<div>
-		<Link to='/see' style={{ marginBottom: '10px' }}>
-		<p>내 눈사람 보기 </p>
-
+		<br></br>
+		</ContentWrapper>
+		
+		<div style={{ margin: '40px 150px 30px 10px' }}>
+		<Link to='/see'>
+		<LinkWrapper>
+			<Icon src={SeeIcon} alt="See icon" />
+			<p>내 눈사람 보기</p>
+		</LinkWrapper>
 		</Link>
-		<span></span>
-		<Link to='/comment' style={{ marginBottom: '10px' }}>
-				<p>내 댓글 보기</p>
+		<Link to='/comment'>
+		<LinkWrapper>
+			<Icon src={CommentIcon} alt="Comment icon" />
+			<p>내 댓글 보기</p>
+		</LinkWrapper>
+		</Link>
+		<Link to='/like'>
+		<LinkWrapper>
+			<Icon src={likeIcon} alt="like icon" />
+			<p>좋아요한 게시글 보기</p>
+		</LinkWrapper>
+		</Link>
+		<Link to='/store'>
+		<LinkWrapper>
+			<Icon src={StoreIcon} alt="Store icon" />
+			<p>저장한 게시글 보기</p>
+		</LinkWrapper>
 		</Link>
 		</div>
-		<Link to='/like' style={{ marginBottom: '10px' }}>
-				<p>좋아요한 게시글 보기</p>
-		</Link>
 
-		<Link to='/store' style={{ marginBottom: '10px' }}>
-				<p>저장한 게시글 보기</p>
-		</Link>
 
-		{/* 이미지와 텍스트를 감싸는 div */}
-		<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-		</div>
-		</div>
-		</PostBg>
-		</>
-
-	);	
+	</PostBg>
+	</>
+);
 };
 
+const ContentWrapper = styled.div`
+text-align: center;
+margin-top: -60vh;
+font-weight: bold;
 
+`;
 
+const LinkWrapper = styled.div`
+text-align: left;
+display: flex;
+align-items: center;
+margin: 10px 0 10px 0; 
+font-weight: bold;
+color: #4F0D0D; 
+font-size: 1.6em; /* 원하는 폰트 크기로 조절, 예: 1.2em */
+
+`;
+
+const Icon = styled.img`
+width: 20px;
+height: 20px;
+margin-right: 5px;
+`;
 
 const PostBg = styled.div`
 padding: 0 12px;
 background: url(${backgroundImage}) no-repeat center center fixed;
-background-size: 100% ;
-background-position: center ;
+background-size: 100%;
+background-position: center;
 height: 100vh;
 display: flex;
 flex-direction: column;
@@ -57,8 +89,3 @@ align-items: center;
 `;
 
 export default Hello;
-
-
-
-
-

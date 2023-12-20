@@ -77,11 +77,12 @@ return (
                                 내 정보 보기
                             </button>
                         </Link>
-
+                        <Link to="/post/photo">
                         <BoxImageContainer>
                             <BoxImage src={box} alt="box" />
                             <WhiteText>내 눈사람 등록하기</WhiteText>
                         </BoxImageContainer>
+                        </Link>
                     </ContentContainer>
                 </PostBg1>
             </PostBg>
@@ -171,7 +172,7 @@ const Cloud = styled.img`
 position:absolute;
 bottom:0;
 bottom: -10%;
-width: 300%;
+width: 200%;
 z-index:1;
 `
 export default Mainmaps;
