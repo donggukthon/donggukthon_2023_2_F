@@ -10,12 +10,16 @@ import CommentIcon from '../../assets/icon/comment.png';
 import Mainbox from '../../assets/main/Mainbox.png';
 
 const MyPageInfo = () => {
+	const [token, setToken] = useState(null)
+
 	useEffect(()=>{
 		const tokenValue = window.location.search.split('=')
 		const ACCESS_TOKEN = tokenValue[1]
 		localStorage.setItem('access_token', ACCESS_TOKEN)
-	},[])
+		setToken(ACCESS_TOKEN)
+	},[token]);
 	
+	localStorage.setItem('access_token', 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjIsImV4cCI6MTcwMzA2MTQyMH0.1pMRmBNrv7qpoMMRErQU20B3GYVFdYCS7H1cjuriKkw')
 
 return (
 	<>

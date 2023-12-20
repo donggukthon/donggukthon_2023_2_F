@@ -212,7 +212,7 @@ const CompleteButtonWrap = styled.ul`
 
 const ColorPickerWrap = styled.div`
   display:flex;
-  justify-contents:center;
+  justify-content:center;
   flex-wrap: wrap;
 `
 

@@ -16,7 +16,7 @@ const AddText = () =>{
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const textContents = useSelector((state) => state.post.textContents)
-  const postId = useSelector((state) => state.postId.id)
+  // const postId = useSelector((state) => state.postId.id)
 
   const handleTitleUpdate = (e) =>{
     dispatch(setTextContents({
@@ -44,10 +44,10 @@ const AddText = () =>{
   //     });
   // }, [dispatch]);
 
-  // const handleUpload = ()=> { 
+  // const handleUpload = async()=> { 
   //   await axios.post(`http://34.22.106.126:8080/posting/description`, {
   //     body:{
-  //       'postingId': postID,
+  //       'postingId': postId,
   //       'snowmanName': textContents.title,
   //       'snowmanNameDescription': textContents.contents
   //     }

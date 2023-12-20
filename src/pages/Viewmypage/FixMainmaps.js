@@ -1,6 +1,6 @@
 /*global kakao*/
 import Header from '../../components/Layout/Header'
-import React, { useCallback, useEffect, } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import box from '../../assets/main/box.png';
@@ -12,145 +12,23 @@ import location from '../../assets/main/mylocation.png'
 import styled from '@emotion/styled'
 import {keyframes} from '@emotion/react'
 import { ACCESS_TOKEN } from '../../utils/api';
-import { useDispatch } from 'react-redux';
-import { useRef } from 'react';
-
 const Mainmaps = () => {
-    const [map, setMap] = useState(null)
 
-    const dispatch = useDispatch()
-    const mapElementRef = useRef(null);
-  
-    useEffect(() => {
-      console.log("start to load kakao maps api")
-      const kakaoMapScript = document.createElement("script");
-      kakaoMapScript.async = false;
-      kakaoMapScript.src = "//dapi.kakao.com/v2/maps/sdk.js?appkey=ad72385a83fbad8abbd735a1f9473931&autoload=false";
-      document.head.appendChild(kakaoMapScript);
-  
-      const onLoadKakaoAPI = () => {
-        window.kakao.maps.load(() => {
-           // 최초 위치
-            const location = new window.kakao.maps.LatLng(
-              37.56682420267543,
-              126.978652258823
-            );
-  
-            const options = {
-              center: location,
-              level: 3,
-            };
-  
-            const map = new window.kakao.maps.Map(mapElementRef.current, options);
-            // const places = new window.kakao.maps.services.Places(map);
-            // const geocoder = new window.kakao.maps.services.Geocoder();
-  
-            setMap(map);
-        });
-      }
-  
-      kakaoMapScript.addEventListener("load", onLoadKakaoAPI);
-  
-      return () => kakaoMapScript.remove();
-    }, [dispatch])
-
-    // var imageSrc = '/cutesnowman.png';
-    // var imageSize = new window.kakao.maps.Size(64, 69);
-    // var imageOption = { offset: new window.kakao.maps.Point(27, 69) };
-    // var positions = [
-    //     {
-    //         title: '떙떙이',
-    //         latlng: new window.kakao.maps.LatLng(37.558050, 127.003027),
-    //     },
-    //     {
-    //         title: '만해광장눈사람',
-    //         latlng: new window.kakao.maps.LatLng(37.5582666, 127.0001641),
-    //     },
-    //     {
-    //         title: '원흥광눈사람',
-    //         latlng: new window.kakao.maps.LatLng(37.559059, 126.998828),
-    //     },
-    //     {
-    //         title: '그냥눈사람',
-    //         latlng: new window.kakao.maps.LatLng(37.558514, 127.0019862),
-    //     },
-    //     {
-    //         title: '나곧녹냐',
-    //         latlng: new window.kakao.maps.LatLng(37.5567124,127.000786),
-    //     },
-    // ];
-
-    // positions.forEach((position) => {
-    //     var markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
-    //     var marker = new window.kakao.maps.Marker({
-    //         map: map,
-    //         position: position.latlng,
-    //         title: position.title,
-    //         image: markerImage,
-    //     });
-    // });
-
-// const moveToCurrentLocation = (event) => {
-//     event.preventDefault();
-
-//     if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(
-//         function (position) {
-//             const lat = position.coords.latitude;
-//             const lon = position.coords.longitude;
-//             map.setCenter(new window.kakao.maps.LatLng(lat, lon));
-//         },
-//         function (error) {
-//             console.error('Error getting user location:', error);
-//         }
-//         );
-//     } else {
-//         console.error('Geolocation is not supported in this browser.');
-//     }
-//     };
-
-// // Declare 'map' outside the useEffect scope
-// let map;
-
-// const { kakao } = window;
-
-// useEffect(() => {
-
-    
-
-
-
-
-
-
-    // var container = document.getElementById('map');
-    // var options = {
-    // center: new window.kakao.maps.LatLng(37.55773506, 127.0019409),
-    // level: 3,
-    // };
-
-    // // Assign 'map' here
-    // map = new window.kakao.maps.Map(container, options);
-
-    
-
-    // marker.setMap(map);
-
-    // kakao.maps.event.addListener(marker, 'click', function () {
-    //     alert(position.title);
-    // });
-    // });
-// }, []);
-
-console.log(ACCESS_TOKEN)
 
 return (
     <>
-            <Header />
+        <Header />
             <PostBg>
                 <PostBg1>
                     <MapContainer>
-                        <div id="map" ref={mapElementRef} style={{ width: '300px', height: '500px' }}></div>
+                    <Map
+                        center={{ lat: 33.5563, lng: 126.79581 }}
+                    style={{ width: "100%", height: "360px" }}
+                    >
+                    <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
+                        <div style={{color:"#000"}}>Hello World!</div>
+                    </MapMarker>
+                    </Map>
                     </MapContainer>
 
                     <ContentContainer>
@@ -158,13 +36,13 @@ return (
                             <button style={{ marginBottom: '10px', color: 'red', fontWeight: 'bold' }}>
                             </button>
                             <div>
-                                <button></button>
+                                <button onClick={moveToCurrentLocation}></button>
                             </div>
 
                         </Link>
                         {
                             (
-                                ACCESS_TOKEN != 'undefined'? 
+                                ACCESS_TOKEN === undefined? 
                                 <Link to="/post/photo">
                                     <BoxImageContainer>
                                         <BoxImage src={box} alt="box" />
@@ -182,7 +60,7 @@ return (
                         } 
                         {
                             (
-                                ACCESS_TOKEN != 'undefined' ? 
+                                ACCESS_TOKEN === undefined ? 
                                 <Link to="/mypage">
                                     <BoxImageContainer1>
                                         <img src={home}/>
@@ -199,7 +77,7 @@ return (
 
 
                         <BoxImageContainer2>
-                                <img src={location} alt="Location"  />
+                                <img src={location} alt="Location" onClick={moveToCurrentLocation} />
                         </BoxImageContainer2>
                     </ContentContainer>
                 </PostBg1>
