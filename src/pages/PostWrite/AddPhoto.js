@@ -4,25 +4,53 @@ import PostBtn from '../../components/PostBtn'
 import Header from '../../components/Layout/Header'
 import { common } from '../../styles/Common'
 import { useDispatch, useSelector } from 'react-redux'
-import { setImageSrc } from '../../redux/postSlice'
+import { setImage } from '../../redux/postSlice'
 import PostAddImg from '../../assets/icon/PostAddImg.png'
 import bg from '../../assets/bg/postBGGrey.png'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { BASE_URL } from '../../utils/api'
+import { setPostId } from '../../redux/postIdSlice'
 
 const AddPhoto = () =>{
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const imageSrc = useSelector((state) => state.post.imageSrc)
+  const ACCESS_TOKEN = useSelector((state) => state.token.value)
+  // const postId = useSelector((state) => state.postId.id)
+
+  // const file = useSelector((state) => state.post.file)
+  const [multipartFile, setmultipartFile] = useState(null)
+  // input에 파일 업로드 시
   const handelFileUpload = (e) => {
-    const file = e.target.files[0]
-    const reader = new FileReader();
+    const multipartFile = e.target.files[0]
+    setmultipartFile(multipartFile)
+
+    const reader = new FileReader()
     reader.onload = () => {	
-      dispatch(setImageSrc(reader.result));
-    };
-    reader.readAsDataURL(file);
+      dispatch(setImage(reader.result))
+    }
+    reader.readAsDataURL(multipartFile)
+  }
+  // 서버 전달
+  const handleUpload = async () => {
+    const formData = new FormData()
+    formData.append('multipartFile', multipartFile)
+    await axios.post(`${BASE_URL}/posting/image`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+      },
+    }).then((result) => {
+      console.log(result.postingId)
+      dispatch(setPostId(result.postingId))
+      navigate('/post/text')
+    }).catch((error)=>{
+      console.error(error)
+    })
   }
 
-  const test = () => {
-    console.log(test)
-  }
   return (
     <>
       <Header />
@@ -38,7 +66,7 @@ const AddPhoto = () =>{
           </PhotoBox>
         </label>
         <InputPostFile type='file' id='snowmanUpload' accept='image/*' onChange={handelFileUpload}/>
-        <PostBtn value='다음' type='button' to='/post/text' onClick={test}/>
+        <PostBtn value='다음' type='button' onClick={handleUpload}/>
     </PostBg>
     </>
   );

@@ -1,3 +1,4 @@
+import axios from 'axios'
 import styled from '@emotion/styled'
 import PostBtn from '../../components/PostBtn'
 import Header from '../../components/Layout/Header'
@@ -6,10 +7,15 @@ import { common } from '../../styles/Common'
 import { useDispatch, useSelector } from 'react-redux'
 import { setTextContents } from '../../redux/postSlice'
 import bg from '../../assets/bg/postBGGrey.png'
+import { useNavigate } from 'react-router-dom'
+import { BASE_URL } from '../../utils/api'
 
 const AddText = () =>{
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const textContents = useSelector((state) => state.post.textContents)
+  const postID = useSelector((state) => state.postId.id)
+  const ACCESS_TOKEN = useSelector((state) => state.token.value)
 
   const handleTitleUpdate = (e) =>{
     dispatch(setTextContents({
@@ -25,6 +31,24 @@ const AddText = () =>{
     }))
   }
 
+  const handleUpload = async () => { 
+       
+    await axios.post(`${BASE_URL}/posting/description`, {
+      headers: {
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+      },
+      body:{
+        'postingId': postID,
+        'snowmanName': textContents.title,
+        'snowmanNameDescription': textContents.contents
+      }
+    }).then((result) => {
+      navigate('/post/location')
+    }).catch((error)=>{
+      console.error(error)
+    })
+  }
+
   return (
     <>
       <Header />
@@ -32,7 +56,7 @@ const AddText = () =>{
         <TitleWrap title='우리 눈사람을 소개할게요!' subTitle='눈사람에 대해 작성해주세요.'/>
         <InputPostTitle name='title' placeholder='제목' onChange={handleTitleUpdate} value={textContents.title} />
         <InputPostContent name='contents' placeholder='내용' onChange={handleContentsUpdate} value={textContents.contents}/>    
-        <PostBtn value='다음' type='button' to='/post/location'/>
+        <PostBtn value='다음' type='button' onClick={handleUpload}/>
       </PostBg>
     </>
   );
